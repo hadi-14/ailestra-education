@@ -1,101 +1,298 @@
-import Image from "next/image";
+"use client";
+import React, { useState, useEffect } from 'react';
 
-export default function Home() {
+function HeroSection() {
+  const slides = [
+    "/Slide Show/1.jpg",
+    "/Slide Show/2.jpg",
+    "/Slide Show/3.jpg"
+  ];
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
+    }, 3000); // Change every 3 seconds
+
+    return () => clearInterval(interval);
+  }, [slides.length]);
+
+  const handleSlideChange = (index: React.SetStateAction<number>) => {
+    setCurrentSlide(index);
+  };
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <section className="relative h-[564px]">
+      <div className="h-4 bg-gradient-to-r from-[#86252E] to-[#0D0050]"></div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      <div className="flex items-center justify-center h-full relative bg-[#004F89]/80">
+        {/* Background Image */}
+        <img
+          src={slides[currentSlide]}
+          alt={`Slide ${currentSlide + 1}`}
+          className="absolute inset-0 w-full h-full object-cover opacity-70"
+        />
+
+        <div className="relative z-10 text-end h-full text-white">
+          {/* <h1 className="text-6xl font-bold mb-8">Text Here (Slider {currentSlide + 1})</h1> */}
+
+          {/* Slide Indicator Dots */}
+          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-4 md:gap-8">
+            {slides.map((_, index) => (
+              <div
+                key={index}
+                onClick={() => handleSlideChange(index)}
+                className={`w-6 h-6 rounded-full cursor-pointer ${currentSlide === index ? 'bg-white' : 'bg-gray-400'}`}
+              ></div>
+            ))}
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </div>
+
+      <div className="h-4 bg-gradient-to-r from-[#86252E] to-[#0D0050]"></div>
+    </section>
+  );
+}
+
+function AilestraSection() {
+  // Array holding text for each feature
+  const features = [
+    "Feature 1 description: Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
+    "Feature 2 description: Duis aute irure dolor in reprehenderit in voluptate...",
+    "Feature 3 description: Excepteur sint occaecat cupidatat non proident...",
+    "Feature 4 description: Sunt in culpa qui officia deserunt mollit anim id est laborum...",
+    "Feature 5 description: Sed ut perspiciatis unde omnis iste natus error sit..."
+  ];
+
+  // State for selected feature
+  const [selectedFeature, setSelectedFeature] = useState(0);
+
+  return (
+    <section className="relative bg-[#FF0000] py-16">
+      {/* Background Image with Red Overlay */}
+      <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('/background.png')" }}></div>
+      <div className="absolute inset-0 bg-[#FF0000] opacity-60"></div>
+
+      {/* Why Ailestra Section */}
+      <div className="relative max-w-7xl mx-auto bg-white rounded-lg p-12 mb-16">
+        <h2 className="text-4xl font-bold text-[#B80000] mb-8">Why Ailestra?</h2>
+        <div className="flex gap-4 md:gap-8 mb-8">
+          {/* Feature Icons */}
+          {[1, 2, 3, 4, 5].map((_, i) => (
+            <div
+              key={i}
+              onClick={() => setSelectedFeature(i)}
+              className={`w-10 h-10 md:w-20 md:h-20 rounded-lg cursor-pointer ${selectedFeature === i ? 'bg-[#16007E]' : 'bg-gray-300'
+                }`}
+            ></div>
+          ))}
+        </div>
+
+        {/* Feature Details */}
+        <h3 className="text-3xl font-bold text-[#16007E] mb-4">Feature {selectedFeature + 1}</h3>
+        <p className="text-xl">
+          {features[selectedFeature]}
+        </p>
+      </div>
+
+      {/* Courses Section */}
+      <div className="relative max-w-7xl mx-auto text-white mb-16">
+        <h2 className="text-4xl font-bold mb-8">Our Courses</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <p className="text-xl">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam provident ipsam dignissimos ducimus nihil officiis laudantium quo, voluptate nam impedit cum sapiente fugit, quidem exercitationem eveniet itaque repudiandae porro! Recusandae.
+          </p>
+          <div className="grid grid-cols-2 gap-4">
+            {[1, 2, 3, 4, 5].map((_, i) => (
+              <div key={i} className="bg-white rounded-lg p-6 h-24"></div>
+            ))}
+            <button className="col-span-2 md:col-span-1 bg-[#16007E] text-white font-bold rounded-full px-8 py-4 m-5">
+              See All
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Lectures Section */}
+      <div className="relative max-w-7xl mx-auto bg-white rounded-lg p-12">
+        <h2 className="text-4xl font-bold text-[#B80000] mb-8">Recorded Lectures</h2>
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-8">
+          {[1, 2, 3, 4, 5].map((_, i) => (
+            <img
+              key={i}
+              src={`/Thumbnails/240f1f0d-d49f-48c2-9a67-57bb83383ff4_1024.jpg`}
+              alt={`Lecture ${i + 1}`}
+              className="rounded-lg border-3 border-[#B80000]"
+            />
+          ))}
+        </div>
+        <div className="flex justify-end">
+          <button className="bg-[#B80000] text-white font-bold rounded-full px-8 py-4">
+            See All
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+const Footer = () => {
+  return (
+    <div className="Footer w-full relative">
+      {/* Gradient Top Bar */}
+      <div className="Rectangle71 w-full h-8 bg-gradient-to-r from-red-900 to-indigo-950" />
+
+      {/* Background Rectangle */}
+      <div className="Rectangle72 w-full h-96 bg-neutral-200 mt-4 md:mt-0 px-4 md:px-12">
+        <br />
+        {/* Logo */}
+        <div className="flex items-center py-2.5">
+          <img src="/logo.png" alt="Top Grey Logo" className="h-16" />
+          <img src="/logo - text.png" alt="Text Logo" className="h-14 ml-2" />
+        </div>
+
+        {/* Text Content */}
+        <div className="Group18 py-8 md:pb-16">
+          <div className="LoremIpsumDolorSitAmetConsecteturAdipiscingElitNuncSitAmetConsecteturNisl text-neutral-800 text-lg md:text-2xl font-normal font-['Inter']">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam quaerat maiores dignissimos et reiciendis exercitationem, odio praesentium? Omnis accusantium accusamus perferendis ad, eligendi aliquid! Cupiditate dicta nihil totam cumque vero.
+          </div>
+
+          {/* Social Media Icons (Facebook, Instagram, YouTube) */}
+          <div className="Frame3 mt-8 flex justify-start items-center gap-6">
+            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+              <img src="/icons/icon-circle-facebook.svg" alt="Facebook" className="w-12 h-12 cursor-pointer" />
+            </a>
+            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+              <img src="/icons/icon-circle-instagram.svg" alt="Instagram" className="w-12 h-12 cursor-pointer" />
+            </a>
+            <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">
+              <img src="/icons/icon-circle-youtube.svg" alt="YouTube" className="w-12 h-12 cursor-pointer" />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Gradient Bottom Bar */}
+      <div className="Rectangle41 w-full bg-gradient-to-r from-red-900 to-indigo-950">
+        {/* Powered By Text */}
+        <div className="PoweredByGraphode text-white text-sm md:text-lg font-black font-['Inter'] text-center md:text-left py-4 px-8">
+          POWERED BY GRAPHODE
+        </div>
+      </div>
+    </div>
+  );
+};
+
+
+export default function LandingPage() {
+  return (
+    <div className="relative w-full bg-white">
+      {/* Navbar */}
+      <nav className="relative h-24 bg-[#DADADA] shadow-lg rounded-t-lg overflow-hidden">
+        <div className="flex items-center justify-between px-8">
+          {/* Logo */}
+          <div className="flex items-center p-2.5">
+            <img src="/logo.png" alt="Top Grey Logo" className="h-16" />
+            <img src="/logo - text.png" alt="Text Logo" className="h-14 ml-2" />
+          </div>
+
+          {/* Nav Links */}
+          <div className="flex items-center gap-4 md:gap-8">
+            <a href="#" className="text-gray-600 font-bold">About</a>
+            <a href="#" className="text-gray-600 font-bold">Courses & Curriculum</a>
+            <a href="#" className="text-gray-600 font-bold">Announcements</a>
+            <button className="px-6 py-3 bg-[#16007E] text-white font-bold rounded-lg">
+              Admission
+            </button>
+            <button className="px-6 py-3 bg-[#177A05] text-white font-bold rounded-lg">
+              Login
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <HeroSection />
+
+      {/* About Section */}
+      <section className="max-w-7xl mx-auto py-16 px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 grid-rows-1 gap-8">
+          <div className="flex justify-center">
+            <img src="/mockup.png" alt="About" className="rounded-3xl aspect-1 h-80" />
+          </div>
+          <div>
+            <h2 className="text-4xl font-bold text-[#B80000] mb-4">About Ailestra</h2>
+            <p className="text-xl mb-4 text-gray-950">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis voluptatum saepe totam libero maiores hic ratione adipisci eligendi, labore voluptate eveniet accusantium aliquid ex, tempora explicabo! Porro repellendus facere amet!
+            </p>
+            <button className="px-6 py-3 bg-[#16007E] text-white font-bold rounded-full">
+              Learn More...
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <AilestraSection />
+
+      {/* Stats Section */}
+      <section className="max-w-7xl mx-auto py-24">
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className='grid grid-rows-1 md:grid-rows-2 gap-8 col-span-2'>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="bg-[#16007E] rounded-3xl p-8 text-white text-center">
+                <h3 className="text-6xl font-bold">1000+</h3>
+                <p className="text-4xl font-bold">students</p>
+              </div>
+              <div className="bg-[#16007E] rounded-3xl p-8 text-white text-center">
+                <h3 className="text-6xl font-bold">100+</h3>
+                <p className="text-4xl font-bold">teachers</p>
+              </div>
+            </div>
+            <div className="bg-[#B80000] rounded-3xl mt-4 p-4 text-white">
+              <h3 className="text-4xl font-bold mb-1">Affiliated With</h3>
+              <div className="flex justify-center gap-8">
+                {[1, 2, 3, 4].map((_, i) => (
+                  <div key={i} className="w-20 h-20 bg-white rounded-full"></div>
+                ))}
+              </div>
+            </div>
+          </div>
+          <div className="bg-gray-300 rounded-3xl">
+            <img src="/cropped-free-bible-study-2-1.jpg" alt="Results" className="w-full mb-4 rounded-3xl" />
+            <h3 className="text-4xl font-bold text-center text-gray-950">2024 Results</h3>
+          </div>
+        </div>
+
+      </section>
+
+      {/* Contact Form */}
+      <section className="bg-gray-300 py-24">
+        <div className="max-w-7xl mx-auto bg-[#16007E] rounded-3xl grid grid-cols-1 md:grid-cols-2 gap-16 shadow-2xl shadow-black">
+          <div className="text-white p-16">
+            <h2 className="text-4xl font-bold mb-8">
+              For Questions,<br />
+              Fill Out the Form<br />
+              <br />
+              Or to Enroll,
+            </h2>
+            <button className="bg-[#B80000] text-white font-bold rounded-full px-8 py-4 mt-8">
+              Admissions
+            </button>
+          </div>
+
+          <div className='bg-[#D9D9D9] p-16 rounded-r-3xl'>
+            <h3 className="text-4xl font-bold text-[#B80000] mb-8 text-center">Questions</h3>
+            <input className="w-full mb-6 px-4 py-3 text-white rounded-lg" placeholder="Full Name" />
+            <input className="w-full mb-6 px-4 py-3 text-white rounded-lg" placeholder="Contact Number" />
+            <input className="w-full mb-6 px-4 py-3 text-white rounded-lg" placeholder="Email" />
+            <textarea className="w-full mb-6 px-4 py-3 text-white rounded-lg" placeholder="Question"></textarea>
+            <button className="w-full bg-[#B80000] text-white font-bold rounded-full py-4">Submit</button>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
     </div>
   );
 }
