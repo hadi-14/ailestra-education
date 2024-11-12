@@ -1,6 +1,6 @@
 'use client';
 import Image from 'next/image'
-import Link from 'next/link'
+// import Link from 'next/link'
 import Footer from '../components/footer';
 import NavBarStudentPortal from './components/header';
 import { useState, useRef } from 'react';
