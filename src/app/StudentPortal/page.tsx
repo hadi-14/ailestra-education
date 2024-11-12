@@ -1,7 +1,9 @@
+'use client';
 import Image from 'next/image'
 import Link from 'next/link'
 import Footer from '../components/footer';
 import NavBarStudentPortal from './components/header';
+import { useState, useRef } from 'react';
 
 interface Assignment {
   title: string;
@@ -22,6 +24,9 @@ interface Exam {
 }
 
 export default function DashboardPage() {
+  const [scrollPercentage, setScrollPercentage] = useState(0);
+  const contentRef = useRef<HTMLDivElement>(null);
+
   const assignments: Assignment[] = [
     { title: "Mathematics HW", dueDate: "11.8.24" },
     { title: "Mathematics HW", dueDate: "11.8.24" },
@@ -38,12 +43,44 @@ export default function DashboardPage() {
     { title: "Quran Class", time: "1:00 pm", teacher: "Sir ASJ" }
   ];
 
+  const upcomingClasses = [
+    { id: 1, name: 'Class 1', time: 'Monday 8:00 am' },
+    { id: 2, name: 'Class 2', time: 'Monday 9:00 am' },
+    { id: 3, name: 'Class 3', time: 'Monday 10:00 am' },
+    { id: 4, name: 'Class 4', time: 'Monday 11:00 am' },
+    { id: 5, name: 'Class 5', time: 'Monday 12:00 pm' },
+    { id: 6, name: 'Class 6', time: 'Monday 1:00 pm' },
+  ];
+
   const exams: Exam[] = [
     { title: "Terminal Exams", status: "upcoming", description: "Syllabus & Schedule Announced Soon" },
     { title: "October Monthly", status: "scheduled" },
     { title: "September Monthly", status: "completed" },
     { title: "August Monthly", status: "completed" }
   ];
+
+  const handleScroll = () => {
+    if (contentRef.current) {
+      const { scrollTop, scrollHeight, clientHeight } = contentRef.current;
+      const scrolled = (scrollTop / (scrollHeight - clientHeight)) * 100;
+      setScrollPercentage(scrolled);
+    }
+  };
+
+  const handleTrackClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!contentRef.current) return;
+    
+    const trackRect = e.currentTarget.getBoundingClientRect();
+    const clickPosition = (e.clientY - trackRect.top) / trackRect.height;
+    
+    const scrollHeight = contentRef.current.scrollHeight;
+    const containerHeight = contentRef.current.clientHeight;
+    const maxScroll = scrollHeight - containerHeight;
+    
+    contentRef.current.scrollTop = maxScroll * clickPosition;
+  };
+
+
 
   return (
     <div className="relative w-full bg-white">
@@ -67,14 +104,39 @@ export default function DashboardPage() {
               </h1>
               <div className="bg-[#D9D9D9] rounded-3xl p-6">
                 <h2 className="text-gray-950 text-xl font-bold mb-4">Upcoming Classes</h2>
-                <div className="text-gray-950 space-y-2">
-                  <p>Class 2 Monday 9:00 am</p>
-                  <p>Class 3 Monday 10:00 am</p>
-                  <p>Class 4 Monday 11:00 am</p>
+                <div className="relative flex gap-4 h-24">
+                  {/* Custom Scrollbar Track */}
+                  <div 
+                    className="relative w-1 cursor-pointer"
+                    onClick={handleTrackClick}
+                  >
+                    <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-gray-950 to-gray-50 rounded-xl" />
+                    <div 
+                      className="absolute w-2 h-2 -left-[2px] bg-gray-950 rounded-full transition-all duration-150"
+                      style={{ top: `${scrollPercentage}%` }}
+                    />
+                  </div>
+
+                  {/* Scrollable Content */}
+                  <div 
+                    ref={contentRef}
+                    onScroll={handleScroll}
+                    className="flex-1 max-h-48 overflow-y-auto scroll-smooth no-scrollbar"
+                  >
+                    <div className="text-gray-950">
+                      {upcomingClasses.map((classItem) => (
+                        <div
+                          key={classItem.id}
+                          className="p-2 rounded-lg hover:bg-gray-300 transition-colors duration-200"
+                        >
+                          {classItem.name} {classItem.time}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-
+              </div>
             {/* Attendance Card */}
             <div className="md:col-span-1 space-y-6">
               <div className="bg-[#D9D9D9] rounded-3xl p-6 text-gray-950">
