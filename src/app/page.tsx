@@ -156,14 +156,16 @@ export default function LandingPage() {
             <a href="#" className="text-gray-600 font-bold">About</a>
             <a href="#" className="text-gray-600 font-bold">Courses & Curriculum</a>
             <a href="#" className="text-gray-600 font-bold">Announcements</a>
-            <button className="px-6 py-3 bg-[#16007E] text-white font-bold rounded-lg">
-              Admission
-            </button>
-              <Link href={`/StudentPortal`}>
+            <Link href={`/StudentPortal/admission`}>
+              <button className="px-6 py-3 bg-[#16007E] text-white font-bold rounded-lg">
+                Admission
+              </button>
+            </Link>
+            <Link href={`/StudentPortal`}>
 
-                <button className="px-6 py-3 bg-[#177A05] text-white font-bold rounded-lg">
-                  Login
-                </button>
+              <button className="px-6 py-3 bg-[#177A05] text-white font-bold rounded-lg">
+                Login
+              </button>
             </Link>
           </div>
         </div>
@@ -174,14 +176,17 @@ export default function LandingPage() {
 
       {/* About Section */}
       <section className="max-w-7xl mx-auto py-16 px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 grid-rows-1 gap-8">
-          <div className="flex justify-center">
-            <img src="/mockup.png" alt="About" className="rounded-3xl aspect-1 h-80" />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Image Container */}
+          <div className="flex items-center justify-center">
+            <img src="/mockup.png" alt="About" className="rounded-3xl h-96 object-cover aspect-1" />
           </div>
+
+          {/* Text Content */}
           <div>
             <h2 className="text-4xl font-bold text-[#B80000] mb-4">About Ailestra</h2>
             <p className="text-xl mb-4 text-gray-950">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis voluptatum saepe totam libero maiores hic ratione adipisci eligendi, labore voluptate eveniet accusantium aliquid ex, tempora explicabo! Porro repellendus facere amet!
+              Ailestra Education was envisioned by Sir Abdul Samad Jamal, the founder of ASJ-ERDC, which oversees several educational initiatives, including Habibian’s Academy, Blooms’ Schooling System, and ASJ-Cradle of Wisdom. As technological advancements continue to reshape the educational landscape, the demand for innovative skills and modern teaching methods has never been greater. Recognizing this need, Ailestra Education emerges as a pioneering venture that integrates cutting-edge teaching approaches and offers advanced courses designed to empower the younger generation by unlocking their true potential and master the skills necessary to thrive in a rapidly evolving world.
             </p>
             <button className="px-6 py-3 bg-[#16007E] text-white font-bold rounded-full">
               Learn More...
@@ -189,6 +194,7 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+
 
       <AilestraSection />
 

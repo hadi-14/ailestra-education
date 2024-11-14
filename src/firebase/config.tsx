@@ -1,5 +1,8 @@
-// Import the functions you need from the SDKs you need
+// config/firebase.ts
 import { initializeApp, getApps } from "firebase/app";
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
     apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -14,4 +17,9 @@ const firebaseConfig = {
 // Initialize Firebase
 const firebase_app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
 
-export default firebase_app;
+// Initialize Firebase services
+const auth = getAuth(firebase_app);
+const db = getFirestore(firebase_app);
+const storage = getStorage(firebase_app);
+
+export { firebase_app, auth, db, storage };
