@@ -14,9 +14,11 @@ export default function NavBarMain() {
 
         {/* Nav Links */}
         <div className="flex items-center gap-4 md:gap-8">
-          <a href="#" className="text-gray-600 font-bold">About</a>
-          <a href="#" className="text-gray-600 font-bold">Courses & Curriculum</a>
-          <a href="#" className="text-gray-600 font-bold">Announcements</a>
+          <Link href={`/about`}>
+            <p className="text-gray-600 font-bold">About</p>
+          </Link>
+          <p className="text-gray-600 font-bold">Courses & Curriculum</p>
+          <p className="text-gray-600 font-bold">Announcements</p>
           <Link href={`/StudentPortal/admission`}>
             <button className="px-6 py-3 bg-[#16007E] text-white font-bold rounded-lg">
               Admission

@@ -802,7 +802,7 @@ const AdmissionForm = () => {
 
       {/* Hero Section */}
       <div className="Hero relative h-72" style={{ backgroundImage: "url('/background.png')" }}>
-      <div className='bg-[#A30000] opacity-60 h-full'></div>
+      <div className='bg-[#A30000] opacity-60 h-full w-full'></div>
         <div className="absolute left-1/4 transform -translate-x-1/2 bottom-[-2rem]">
           <div className="bg-gray-200 rounded-3xl border border-stone-300 px-16 py-6">
             <h1 className="text-violet-950 text-7xl font-bold font-['Inter']">Admission</h1>
