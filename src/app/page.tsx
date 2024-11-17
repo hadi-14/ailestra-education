@@ -1,7 +1,6 @@
 "use client";
 import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
-import Footer from './components/footer';
 
 function HeroSection() {
   const slides = [
@@ -255,8 +254,6 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-
-      <Footer />
     </div>
   );
 }
