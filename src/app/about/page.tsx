@@ -1,4 +1,3 @@
-
 import React from 'react';
 import NavBarMain from '../components/header';
 
@@ -17,9 +16,9 @@ const aboutContent = {
 
 const ContentSection: React.FC<SectionProps> = ({ title, content, className = "" }) => {
     return (
-        <div className={`w-full rounded-3xl border border-stone-300 bg-gray-200 p-8 ${className}`}>
-            <h2 className="text-red-700 text-4xl font-bold font-inter text-center mb-8">{title}</h2>
-            <p className="text-neutral-800 text-xl font-normal font-inter text-center">
+        <div className={`w-full rounded-xl border border-stone-300 bg-gray-200 p-4 ${className}`}>
+            <h2 className="text-red-700 text-2xl font-bold font-inter text-center mb-4">{title}</h2>
+            <p className="text-neutral-800 text-base font-normal font-inter text-center">
                 {content}
             </p>
         </div>
@@ -32,39 +31,39 @@ export default function AboutPage() {
             <NavBarMain />
 
             {/* Hero Section */}
-            <div className="relative h-72 mb-4" style={{ backgroundImage: "url('/background.png')" }}>
+            <div className="relative h-48 mb-4" style={{ backgroundImage: "url('/background.png')" }}>
                 <div className="w-full h-full bg-[#A30000] opacity-60" />
 
-                <div className="absolute left-1/4 transform -translate-x-1/2 bottom-[-2rem]">
-                    <div className="bg-gray-200 rounded-3xl border border-stone-300 px-12 py-6">
-                        <h1 className="text-violet-950 text-7xl font-bold font-inter">About Ailestra</h1>
+                <div className="absolute left-1/4 transform -translate-x-1/2 bottom-[-1.5rem]">
+                    <div className="bg-gray-200 rounded-xl border border-stone-300 px-6 py-4">
+                        <h1 className="text-violet-950 text-4xl font-bold font-inter">About Ailestra</h1>
                     </div>
                 </div>
             </div>
 
             {/* Main Content */}
-            <div className="container mx-auto px-4 py-16">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-16">
-                    <img src="/mockup.png" alt="About" className="rounded-3xl h-96 object-cover aspect-1 w-full" />
+            <div className="container mx-auto px-4 py-12">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                    <img src="/mockup.png" alt="About" className="rounded-xl h-72 object-cover aspect-1 w-full" />
                     <div className="flex items-center">
-                        <p className="text-neutral-800 text-2xl font-normal font-inter">
+                        <p className="text-neutral-800 text-base font-normal font-inter">
                             {aboutContent.intro}
                         </p>
                     </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div className="grid grid-rows-2 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="grid grid-rows-2 gap-4">
                         <ContentSection title="Vision" content={aboutContent.vision} />
                         <ContentSection
                             title="Mission"
                             content={aboutContent.mission}
-                            className="mb-16"
+                            className="mb-8"
                         />
                     </div>
-                    <div className={`w-full rounded-3xl p-8`}>
-                        <h2 className="text-red-700 text-4xl font-bold font-inter text-center mb-8">History</h2>
-                        <p className="text-neutral-800 text-xl font-normal font-inter text-center">
+                    <div className={`w-full rounded-xl p-4`}>
+                        <h2 className="text-red-700 text-2xl font-bold font-inter text-center mb-4">History</h2>
+                        <p className="text-neutral-800 text-base font-normal font-inter text-center">
                             {aboutContent.history}
                         </p>
                     </div>
