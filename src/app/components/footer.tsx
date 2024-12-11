@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 export default function Footer() {
   return (
     <div className="Footer w-full relative">
@@ -8,8 +10,21 @@ export default function Footer() {
       <div className="Rectangle72 w-full h-auto bg-neutral-200 px-4 md:px-8">
         {/* Logo */}
         <div className="flex items-center py-2 pt-4">
-          <img src="/logo.png" alt="Top Grey Logo" className="h-10" />
-          <img src="/logo - text.png" alt="Text Logo" className="h-8 ml-2" />
+          <Image
+              src="/logo.png"
+              alt="Top Grey Logo"
+              width={150}
+              height={40}
+              priority
+            />
+          <Image
+              src="/logo - text.png"
+              alt="Text Logo"
+              width={0}
+              height={32}
+              className="ml-2"
+              priority
+            />
         </div>
 
         {/* Text Content */}
@@ -21,13 +36,35 @@ export default function Footer() {
           {/* Social Media Icons (Facebook, Instagram, YouTube) */}
           <div className="Frame3 mt-4 flex justify-start items-center gap-4">
             <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
-              <img src="/icons/icon-circle-facebook.svg" alt="Facebook" className="w-8 h-8 cursor-pointer" />
+              <Image
+                src="icons/icon-circle-facebook.svg"
+                alt="YouTube"
+                width={0}
+                height={0}
+                className="w-8 h-8 cursor-pointer"
+                priority
+              />
             </a>
             <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
-              <img src="/icons/icon-circle-instagram.svg" alt="Instagram" className="w-8 h-8 cursor-pointer" />
+              <Image
+                src="/icons/icon-circle-instagram.svg"
+                alt="YouTube"
+                width={0}
+                height={0}
+                className="w-8 h-8 cursor-pointer"
+                priority
+              />
             </a>
             <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">
-              <img src="/icons/icon-circle-youtube.svg" alt="YouTube" className="w-8 h-8 cursor-pointer" />
+              <Image
+                src="/icons/icon-circle-youtube.svg"
+                alt="YouTube"
+                width={0}
+                height={0}
+                className="w-8 h-8 cursor-pointer"
+                priority
+              />
+
             </a>
           </div>
         </div>

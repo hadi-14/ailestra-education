@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import NavBarMain from './components/header';
+import Image from 'next/image'
 
 function HeroSection() {
   const slides = [
@@ -27,12 +28,14 @@ function HeroSection() {
       <div className="h-2 bg-gradient-to-r from-[#86252E] to-[#0D0050]"></div>
 
       <div className="flex items-center justify-center h-full relative bg-[#004F89]/80">
-        <img
-          src={slides[currentSlide]}
-          alt={`Slide ${currentSlide + 1}`}
-          className="absolute inset-0 w-full h-full object-cover opacity-70"
-        />
-
+        <Image
+            src={slides[currentSlide]}
+            alt={`Slide ${currentSlide + 1}`}
+            width={1904}
+            height={400}
+            className="absolute inset-0 w-full h-full object-cover opacity-70"
+            priority
+          />
         <div className="relative z-10 text-end h-full text-white">
           <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 md:gap-4">
             {slides.map((_, index) => (
@@ -89,11 +92,15 @@ function AilestraSection() {
         <h2 className="text-2xl font-bold mb-4">Our Courses</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <p className="text-base">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam provident ipsam dignissimos ducimus nihil officiis laudantium quo.
+            Our diverse courses cater to every stage of learning, offering academic programs like KBSE, AKU-EB, CAIE O/A Level, IGCSE, and IB, alongside English Language Programs for communication and writing skills. Enhance your tech proficiency with ICT and programming courses, including Python, robotics, and advanced tools. Unleash creativity through practical skills in graphic design, digital marketing, photography, event planning, and more, ensuring you gain the expertise needed for academic and professional success.
           </p>
           <div className="grid grid-cols-2 gap-2">
-            {[1, 2, 3, 4, 5].map((_, i) => (
-              <div key={i} className="bg-white rounded-lg p-3 h-16"></div>
+          {['Foundation Program', 'English Language Programs', 'ICT Programs', 'Practical Skills', 'Programming'].map((course, i) => (
+              <div key={i} className="bg-white rounded-lg p-3 h-16 flex items-center justify-center">
+                <p className="text-gray-950 text-center font-bold">
+                  {course}
+                </p>
+              </div>
             ))}
             <button className="col-span-2 md:col-span-1 bg-[#16007E] text-white font-bold rounded-full px-4 py-2 m-2">
               See All
@@ -106,10 +113,18 @@ function AilestraSection() {
         <h2 className="text-2xl font-bold text-[#B80000] mb-4">Recorded Lectures</h2>
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-4">
           {[1, 2, 3, 4, 5].map((_, i) => (
-            <img
+            // <img
+            //   key={i}
+            //   src={`/Thumbnails/240f1f0d-d49f-48c2-9a67-57bb83383ff4_1024.jpg`}
+            //   alt={`Lecture ${i + 1}`}
+            //   className="rounded-lg border-2 border-[#B80000]"
+            // />
+            <Image
               key={i}
               src={`/Thumbnails/240f1f0d-d49f-48c2-9a67-57bb83383ff4_1024.jpg`}
               alt={`Lecture ${i + 1}`}
+              width={300}
+              height={0}
               className="rounded-lg border-2 border-[#B80000]"
             />
           ))}
@@ -133,14 +148,20 @@ export default function LandingPage() {
       <section className="max-w-7xl mx-auto py-8 px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="flex items-center justify-center">
-            <img src="/mockup.png" alt="About" className="rounded-2xl h-64 object-cover aspect-1" />
+            <Image
+              src="/mockup.png"
+              alt="About"
+              width={384}
+              height={384}
+              className="rounded-2xl h-96 object-cover aspect-1"
+              priority
+            />
           </div>
 
           <div>
-            <h2 className="text-2xl font-bold text-[#B80000] mb-2">About Ailestra</h2>
+            <h2 className="text-4xl font-bold text-[#B80000] mb-2 pt-7">About Ailestra</h2>
             <p className="text-base mb-2 text-gray-950">
-              Ailestra Education was envisioned by Sir Abdul Samad Jamal, the founder of ASJ-ERDC. As technological advancements continue to reshape the educational landscape, the demand for innovative skills and modern teaching methods has never been greater.
-            </p>
+            Ailestra Education was envisioned by Sir Abdul Samad Jamal, the visionary founder of ASJ-ERDC, with a mission to redefine the boundaries of learning. In a rapidly evolving world where technological advancements are reshaping every aspect of life, education stands at the forefront of change. Recognizing this, Ailestra Education is dedicated to fostering innovative skills and introducing modern teaching methods that prepare learners to excel in an ever-changing global landscape. The demand for forward-thinking education has never been greater, and Ailestra Education is committed to meeting this need with excellence and innovation.            </p>
             <button className="px-4 py-2 bg-[#16007E] text-white font-bold rounded-full text-sm">
               Learn More...
             </button>
@@ -173,7 +194,13 @@ export default function LandingPage() {
             </div>
           </div>
           <div className="bg-gray-300 rounded-2xl">
-            <img src="/cropped-free-bible-study-2-1.jpg" alt="Results" className="w-full mb-2 rounded-2xl" />
+            <Image
+              src="/cropped-free-bible-study-2-1.jpg"
+              alt="Results"
+              width={217}
+              height={65}
+              className="w-full mb-2 rounded-2xl2"
+              />
             <h3 className="text-2xl font-bold text-center text-gray-950">2024 Results</h3>
           </div>
         </div>
