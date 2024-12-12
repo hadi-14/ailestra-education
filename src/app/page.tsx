@@ -1,7 +1,9 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import NavBarMain from "./components/header";
+import ContactForm from "./components/contactForm";
 import Image from "next/image";
+import Link from "next/link";
 // import { motion, AnimatePresence } from 'framer-motion';
 
 function HeroSection() {
@@ -138,9 +140,12 @@ function AilestraSection() {
                 <p className="text-white text-center font-bold">{course}</p>
               </div>
             ))}
-            <button className="col-span-2 md:col-span-1 bg-[#16007E] text-white font-bold rounded-lg p-3 m-2">
-              See All
-            </button>
+            <Link href={`/courses`} className="col-span-2 md:col-span-1 bg-[#16007E] rounded-lg p-3 m-2 justify-center">
+              <button className="text-white font-bold w-full h-full">
+                See All
+              </button>
+            </Link>
+            
           </div>
         </div>
       </div>
@@ -160,11 +165,6 @@ function AilestraSection() {
               className="rounded-lg border-2 border-[#B80000]"
             />
           ))}
-        </div>
-        <div className="flex justify-end">
-          <button className="bg-[#B80000] text-white font-bold rounded-full px-4 py-2">
-            See All
-          </button>
         </div>
       </div>
     </section>
@@ -249,9 +249,11 @@ export default function LandingPage() {
               Education is committed to meeting this need with excellence and
               innovation.{" "}
             </p>
+            <Link href={`/about`}>
             <button className="px-4 py-2 bg-[#16007E] text-white font-bold rounded-full text-sm">
               Learn More...
             </button>
+            </Link>
           </div>
         </div>
       </section>
@@ -309,34 +311,14 @@ export default function LandingPage() {
               <br />
               Or to Enroll,
             </h2>
-            <button className="bg-[#B80000] text-white font-bold rounded-full px-4 py-2 mt-4">
-              Admissions
-            </button>
+            <Link href={`/StudentPortal/admission`}>
+              <button className="bg-[#B80000] text-white font-bold rounded-full px-4 py-2 mt-4">
+                Admissions
+              </button>
+            </Link>
           </div>
 
-          <div className="bg-[#D9D9D9] p-8 rounded-r-2xl">
-            <h3 className="text-2xl font-bold text-[#B80000] mb-4 text-center">
-              Questions
-            </h3>
-            <input
-              className="w-full mb-4 px-2 py-2 text-black rounded-lg"
-              placeholder="Full Name"
-            />
-            <input
-              className="w-full mb-4 px-2 py-2 text-black rounded-lg"
-              placeholder="Contact Number"
-            />
-            <input
-              className="w-full mb-4 px-2 py-2 text-black rounded-lg"
-              placeholder="Email"
-            />
-            <textarea
-              className="w-full mb-4 px-2 py-2 text-black rounded-lg"
-              placeholder="Question"></textarea>
-            <button className="w-full bg-[#B80000] text-white font-bold rounded-full py-2">
-              Submit
-            </button>
-          </div>
+          <ContactForm />
         </div>
       </section>
     </div>
