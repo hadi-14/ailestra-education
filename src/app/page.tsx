@@ -69,7 +69,16 @@ function AilestraSection() {
 
   return (
     <section className="relative bg-[#FF0000] py-8 align-middle ">
-      <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('/background.png')" }}></div>
+    <div className="absolute inset-0">
+      <Image
+        src="/background.png"
+        alt="Background"
+        layout="fill"
+        objectFit="cover"
+        objectPosition="center"
+        priority={true} // Ensures the background loads quickly
+      />
+    </div>
       <div className="absolute inset-0 bg-[#FF0000] opacity-60"></div>
 
       <div className="relative max-w-7xl mx-auto bg-white rounded-lg p-6 mb-8">
@@ -81,7 +90,7 @@ function AilestraSection() {
               onClick={() => setSelectedFeature(i)}
               className={`w-8 h-8 md:w-12 md:h-12 rounded-full cursor-pointer ${selectedFeature === i ? 'bg-[#16007E]' : 'bg-gray-300'} flex items-center justify-center`}
             >
-              <h2 className={`${selectedFeature === i ? 'text-white' : 'text-gray-800'} font-bold text-3xl text-center`}>{i+1}</h2>
+              <h2 className={`${selectedFeature === i ? 'text-white' : 'text-gray-800'} font-bold text-3xl text-center`}>{i + 1}</h2>
 
             </div>
           ))}
@@ -138,6 +147,50 @@ function AilestraSection() {
   );
 }
 
+const embedID = "pKqRNMwvb2Q";
+
+const Embed = () => {
+  const [imageClicked, setImageClicked] = useState(false);
+
+  return (
+    <div className="relative w-full pb-[56.25%]"> {/* Aspect ratio 16:9 */}
+      <div className="absolute inset-0" onClick={() => setImageClicked(true)}>
+        {!imageClicked ? (
+          <>
+            <Image
+              src={`https://img.youtube.com/vi/${embedID}/sddefault.jpg`}
+              layout="fill"
+              objectFit="cover"
+              alt="YouTube thumbnail"
+              className="rounded-lg"
+            />
+            <Image
+              src={`https://addplaybuttontoimage.way4info.net/Images/Icons/7.png`}
+              width={80}
+              height={80}
+              // objectFit="cover"
+              alt="Play button"
+              priority
+              className="absolute w-16 h-16 md:w-20 md:h-20 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10"
+            />
+          </>
+        ) : (
+          <iframe
+            className="absolute inset-0 w-full h-full rounded-lg"
+            src={`https://www.youtube.com/embed/${embedID}?rel=0&showinfo=0&autoplay=1`}
+            title="YouTube video"
+            frameBorder="0"
+            allow="autoplay; encrypted-media; fullscreen"
+            allowFullScreen
+          ></iframe>
+        )}
+      </div>
+    </div>
+  );
+};
+
+
+
 export default function LandingPage() {
   return (
     <div className="relative w-full bg-white">
@@ -193,17 +246,7 @@ export default function LandingPage() {
             </div>
           </div>
           <div className="rounded-2xl overflow-hidden col-span-2">
-            <div className="aspect-2">
-              <iframe
-                width="100%"
-                height="100%"
-                src="https://www.youtube.com/embed/pKqRNMwvb2Q"
-                title="YouTube video"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-            </div>
+            <Embed />
           </div>
         </div>
       </section>

@@ -35,9 +35,7 @@ export default function RootLayout({
     <html lang="en">
       <link rel="icon" href="/logo_shield.ico" sizes="any" />
 
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased pt-16`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased pt-16`}>
         {children}
       <Footer />
       </body>
