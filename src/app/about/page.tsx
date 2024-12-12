@@ -1,5 +1,6 @@
 import React from 'react';
 import NavBarMain from '../components/header';
+import Image from "next/image";
 
 type SectionProps = {
     title: string;
@@ -32,11 +33,11 @@ export default function AboutPage() {
 
             {/* Hero Section */}
             <div className="relative h-48 mb-4" style={{ backgroundImage: "url('/background.png')" }}>
-                <div className="w-full h-full bg-[#A30000] opacity-60" />
+                <div className="w-full h-full bg-[#A30000] opacity-80" />
 
                 <div className="absolute left-1/4 transform -translate-x-1/2 bottom-[-1.5rem]">
                     <div className="bg-gray-200 rounded-xl border border-stone-300 px-6 py-4">
-                        <h1 className="text-violet-950 text-4xl font-bold font-inter">About Ailestra</h1>
+                        <h1 className="text-violet-950 text-4xl font-bold">About Ailestra</h1>
                     </div>
                 </div>
             </div>
@@ -44,7 +45,11 @@ export default function AboutPage() {
             {/* Main Content */}
             <div className="container mx-auto px-4 py-12">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-                    <img src="/mockup.png" alt="About" className="rounded-xl h-72 object-cover aspect-1 w-full" />
+                    <Image
+                        src="/mockup.png" alt="About"
+                        className="rounded-xl h-72 object-cover aspect-1 w-full"
+                        height={576} width={576}
+                    />
                     <div className="flex items-center">
                         <p className="text-neutral-800 text-base font-normal font-inter">
                             {aboutContent.intro}
@@ -54,7 +59,7 @@ export default function AboutPage() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="grid grid-rows-2 gap-4">
-                        <ContentSection title="Vision" content={aboutContent.vision} />
+                        <ContentSection className='mt-16' title="Vision" content={aboutContent.vision} />
                         <ContentSection
                             title="Mission"
                             content={aboutContent.mission}

@@ -30,7 +30,7 @@ export default function Footer() {
 
           {/* Text Content */}
           <div className="Group18 py-4 md:pb-8">
-            <div className="text-neutral-800 text-sm md:text-base font-normal font-['Inter']">
+            <div className="text-neutral-800 text-sm md:text-base font-normal">
               Ailestra Education was envisioned by Sir Abdul Samad Jamal, the founder of ASJ-ERDC. As technological advancements continue to reshape the educational landscape, the demand for innovative skills and modern teaching methods has never been greater.
             </div>
 
@@ -75,7 +75,7 @@ export default function Footer() {
       <div className="Rectangle41 w-full bg-gradient-to-r from-red-900 to-indigo-950 flex justify-center">
         <div className="w-full max-w-[1300px] px-4">
           {/* Powered By Text */}
-          <div className="PoweredByGraphode text-white text-xs md:text-sm font-black font-['Inter'] text-center md:text-left py-2">
+          <div className="PoweredByGraphode text-white text-xs md:text-sm font-black text-center md:text-left py-2">
             POWERED BY GRAPHODE
           </div>
         </div>
