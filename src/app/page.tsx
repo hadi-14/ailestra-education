@@ -1,9 +1,10 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import NavBarMain from "./components/header";
 import ContactForm from "./components/contactForm";
 import Image from "next/image";
 import Link from "next/link";
+import { ChevronUp, ChevronDown } from "lucide-react";
 // import { motion, AnimatePresence } from 'framer-motion';
 
 function HeroSection() {
@@ -57,22 +58,111 @@ function HeroSection() {
   );
 }
 
-function AilestraSection() {
-  const features = {
+
+const AutoFeatureSelector: React.FC = () => {
+  const [selectedFeature, setSelectedFeature] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const autoPlayDuration = 2000; // 2 seconds per feature
+  const pauseDuration = 5000; // 5 seconds pause
+  const features = useMemo(() => ({
     "Innovative Curriculum":
       "Our cutting-edge curriculum integrates modern teaching methodologies and technological advancements to prepare learners for the future.",
     "Experienced Faculty":
       "Learn from highly qualified educators who are passionate about fostering excellence and innovation in education.",
     "Comprehensive Programs":
-      "From academic excellence to practical skills, we offer a diverse range of programs tailored to meet every learner’s needs.",
+      "From academic excellence to practical skills, we offer a diverse range of programs tailored to meet every learner's needs.",
     "Personalized Learning":
       "With a focus on individual growth, our personalized approach ensures every student achieves their full potential.",
     "Global Perspectives":
       "We emphasize international standards and a global outlook, equipping students to thrive in a connected world.",
+  }), []); // Empty dependency array means this will only be created once
+
+  useEffect(() => {
+    // Function to start auto-playing
+    const startAutoPlay = () => {
+      intervalRef.current = setInterval(() => {
+        setSelectedFeature((prev) => (prev + 1) % Object.keys(features).length);
+      }, autoPlayDuration);
+    };
+
+    // Function to pause auto-playing
+    const pauseAutoPlay = () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+    };
+
+    // If auto-playing is enabled, start the interval
+    if (isAutoPlaying) {
+      startAutoPlay();
+
+      // Set a timer to resume auto-play after pause duration
+      const resumeTimer = setTimeout(() => {
+        setIsAutoPlaying(true);
+      }, pauseDuration);
+
+      // Cleanup function
+      return () => {
+        pauseAutoPlay();
+        clearTimeout(resumeTimer);
+      };
+    }
+
+    // Add dependencies to useEffect
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, [features, isAutoPlaying, autoPlayDuration, pauseDuration]);
+
+  // Handler to toggle auto-play when user clicks
+  const handleFeatureClick = (index: number) => {
+    setSelectedFeature(index);
+    setIsAutoPlaying(false);
   };
 
-  const [selectedFeature, setSelectedFeature] = useState(0);
+  return (
+    <div className="flex flex-col items-center max-w-xl mx-auto p-4">
+      <div className="flex gap-2 md:gap-4 mb-4">
+        {Object.keys(features).map((_, i) => (
+          <div
+            key={i}
+            onClick={() => handleFeatureClick(i)}
+            className={`w-8 h-8 md:w-12 md:h-12 rounded-full cursor-pointer ${selectedFeature === i ? "bg-[#16007E]" : "bg-gray-300"
+              } flex items-center justify-center transition-colors duration-300`}
+          >
+            <h2
+              className={`${selectedFeature === i ? "text-white" : "text-gray-800"
+                } font-bold text-3xl text-center`}
+            >
+              {i + 1}
+            </h2>
+          </div>
+        ))}
+      </div>
 
+      <div className="text-center">
+        <h3 className="text-xl font-bold text-[#16007E] mb-2">
+          {Object.keys(features)[selectedFeature]}
+        </h3>
+        <p className="text-base text-gray-700">
+          {Object.values(features)[selectedFeature]}
+        </p>
+      </div>
+
+      {!isAutoPlaying && (
+        <div className="text-sm text-gray-600 mt-2">
+          Auto-play paused. Will resume in {pauseDuration / 1000} seconds.
+        </div>
+      )}
+    </div>
+  );
+};
+
+function AilestraSection() {
   return (
     <section className="relative bg-[#FF0000] py-8 align-middle ">
       <div className="absolute inset-0">
@@ -87,30 +177,31 @@ function AilestraSection() {
       </div>
       <div className="absolute inset-0 bg-[#FF0000] opacity-60"></div>
 
-      <div className="relative max-w-7xl mx-auto bg-white rounded-lg p-6 mb-8">
-        <h2 className="text-2xl font-bold text-[#B80000] mb-4">
-          Why Ailestra?
-        </h2>
-        <div className="flex gap-2 md:gap-4 mb-4">
-          {[1, 2, 3, 4, 5].map((_, i) => (
-            <div
-              key={i}
-              onClick={() => setSelectedFeature(i)}
-              className={`w-8 h-8 md:w-12 md:h-12 rounded-full cursor-pointer ${selectedFeature === i ? "bg-[#16007E]" : "bg-gray-300"
-                } flex items-center justify-center`}>
-              <h2
-                className={`${selectedFeature === i ? "text-white" : "text-gray-800"
-                  } font-bold text-3xl text-center`}>
-                {i + 1}
-              </h2>
-            </div>
-          ))}
+      <div className="relative max-w-7xl mx-auto bg-white rounded-lg p-6 mb-8 flex items-center px-28">
+        <Image
+          src="/Ailestra/wing.png"
+          alt="left wing"
+          layout="intrinsic"
+          width={250}
+          height={250}
+          priority
+          className="transform -scale-x-100 pb-20"
+        />
+        <div className="flex-1">
+          <h2 className="text-3xl font-bold text-[#B80000] mb-4 text-center">
+            Why Ailestra?
+          </h2>
+          <AutoFeatureSelector />
         </div>
-
-        <h3 className="text-xl font-bold text-[#16007E] mb-2">
-          {Object.keys(features)[selectedFeature]}
-        </h3>
-        <p className="text-base">{Object.values(features)[selectedFeature]}</p>
+        <Image
+          src="/Ailestra/wing.png"
+          alt="right wing"
+          layout="intrinsic"
+          width={250}
+          height={250}
+          priority
+          className="pb-20"
+        />
       </div>
 
       <div className="relative max-w-7xl mx-auto text-white mb-8">
@@ -145,7 +236,7 @@ function AilestraSection() {
                 See All
               </button>
             </Link>
-            
+
           </div>
         </div>
       </div>
@@ -213,6 +304,91 @@ const Embed = () => {
   );
 };
 
+const FAQSection: React.FC = () => {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const faqs = [
+    {
+      question: "What programs does Ailestra Education offer?",
+      answer: "Ailestra Education provides a variety of programs including Foundation, Middle School, High School, English Language, ICT, Programming, and Practical Skills courses tailored to different learning needs."
+    },
+    {
+      question: "Who are the instructors at Ailestra Education?",
+      answer: "Our instructors are highly experienced professionals with expertise in their respective fields, ensuring quality education and personalized support for every student."
+    },
+    {
+      question: "How can I enroll in a course at Ailestra Education?",
+      answer: "Enrollment is easy! Simply visit our website, choose the desired program, and follow the registration process. For further assistance, feel free to contact us at [email] or through our support chat."
+    },
+    {
+      question: "What sets Ailestra Education apart from other institutions?",
+      answer: "Ailestra Education stands out with its innovative curriculum, experienced faculty, and a personalized approach to learning, ensuring a comprehensive and engaging educational experience."
+    },
+    {
+      question: "Are there any certification programs offered?",
+      answer: "Yes, we offer various certification programs, including IELTS, TOEFL, and industry-recognized certificates in ICT, Programming, and Practical Skills, helping students gain valuable qualifications for their future careers."
+    },
+  ];
+
+  const toggleFAQ = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
+  return (
+    <section className="bg-gray-300 py-12">
+      <div className="max-w-7xl mx-auto bg-[#16007E] rounded-2xl grid grid-cols-1 md:grid-cols-2 gap-8 shadow-xl shadow-black overflow-hidden relative p-8">
+        {/* Left Side - FAQ Title and Description */}
+        <div className="text-white z-10 relative flex flex-col justify-center">
+          <h2 className="text-3xl font-bold mb-4">
+            Frequently Asked
+            <br />
+            Questions
+          </h2>
+          <p className="text-gray-200 mb-4">
+            Find quick answers to common queries about our institution,
+            programs, and student life.
+          </p>
+          <div className="absolute top-0 left-0 w-full h-full opacity-10">
+            <div className="absolute top-[-50px] left-[-50px] w-48 h-48 bg-white/20 rounded-full"></div>
+            <div className="absolute bottom-[-50px] right-[-50px] w-64 h-64 bg-white/20 rounded-full"></div>
+          </div>
+        </div>
+
+        {/* Right Side - FAQ Accordion */}
+        <div className="space-y-4">
+          {faqs.map((faq, index) => (
+            <div 
+              key={index}
+              className="bg-white/10 rounded-lg overflow-hidden"
+            >
+              <div 
+                onClick={() => toggleFAQ(index)}
+                className="flex justify-between items-center p-4 cursor-pointer hover:bg-white/20 transition-colors"
+              >
+                <h3 className="text-white font-semibold">{faq.question}</h3>
+                {openIndex === index ? (
+                  <ChevronUp className="text-white" />
+                ) : (
+                  <ChevronDown className="text-white" />
+                )}
+              </div>
+              {openIndex === index && (
+                <div className="p-4 pt-0 text-white/80">
+                  {faq.answer}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+
+        {/* Decorative Shapes */}
+        <div className="absolute top-0 right-0 w-48 h-48 bg-white/10 rounded-full transform rotate-45 translate-x-1/4 -translate-y-1/4"></div>
+        <div className="absolute bottom-0 left-0 w-64 h-64 bg-white/10 rounded-full transform -rotate-45 -translate-x-1/4 translate-y-1/4"></div>
+      </div>
+    </section>
+  );
+};
+
 export default function LandingPage() {
   return (
     <div className="relative w-full bg-white">
@@ -223,7 +399,7 @@ export default function LandingPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="flex items-center justify-center">
             <Image
-              src="/mockup.png"
+              src="/Ailestra/mockup.png"
               alt="About"
               width={384}
               height={384}
@@ -233,9 +409,9 @@ export default function LandingPage() {
           </div>
 
           <div>
-            <h2 className="text-4xl font-bold text-[#B80000] mb-2 pt-7">
-              About Ailestra
-            </h2>
+            <h1 className="text-4xl font-bold text-[#B80000] mb-2 pt-7">
+              Ailestra Education
+            </h1>
             <p className="text-base mb-2 text-gray-950">
               Ailestra Education was envisioned by Sir Abdul Samad Jamal, the
               visionary founder of ASJ-ERDC, with a mission to redefine the
@@ -250,9 +426,9 @@ export default function LandingPage() {
               innovation.{" "}
             </p>
             <Link href={`/about`}>
-            <button className="px-4 py-2 bg-[#16007E] text-white font-bold rounded-full text-sm">
-              Learn More...
-            </button>
+              <button className="px-4 py-2 bg-[#16007E] text-white font-bold rounded-full text-sm">
+                Learn More...
+              </button>
             </Link>
           </div>
         </div>
@@ -302,8 +478,9 @@ export default function LandingPage() {
       </section>
 
       <section className="bg-gray-300 py-12">
-        <div className="max-w-7xl mx-auto bg-[#16007E] rounded-2xl grid grid-cols-1 md:grid-cols-2 gap-8 shadow-xl shadow-black">
-          <div className="text-white p-8">
+        <div className="max-w-7xl mx-auto bg-[#16007E] rounded-2xl grid grid-cols-1 md:grid-cols-2 gap-8 shadow-xl shadow-black overflow-hidden relative">
+          {/* Left Side Content */}
+          <div className="text-white p-8 z-10 relative">
             <h2 className="text-2xl font-bold mb-4">
               For Questions,
               <br />
@@ -312,15 +489,28 @@ export default function LandingPage() {
               Or to Enroll,
             </h2>
             <Link href={`/StudentPortal/admission`}>
-              <button className="bg-[#B80000] text-white font-bold rounded-full px-4 py-2 mt-4">
+              <button className="bg-[#B80000] text-white font-bold rounded-full px-4 py-2 mt-4 hover:bg-[#900000] transition-colors duration-300">
                 Admissions
               </button>
             </Link>
+
+            {/* Background Elements */}
+            <div className="absolute top-0 left-0 w-full h-full">
+              <div className="absolute top-[-50px] left-[-50px] w-48 h-48 bg-white/15 rounded-full"></div>
+              <div className="absolute bottom-[-50px] right-[-50px] w-64 h-64 bg-white/10 rounded-full"></div>
+            </div>
           </div>
 
+          {/* Right Side - Contact Form */}
           <ContactForm />
+
+          {/* Decorative Shapes */}
+          <div className="absolute top-0 right-0 w-48 h-48 bg-white/20 rounded-full transform rotate-45 translate-x-1/4 -translate-y-1/4"></div>
+          <div className="absolute bottom-0 left-0 w-64 h-64 bg-white/8 rounded-full transform -rotate-45 -translate-x-1/4 translate-y-1/4"></div>
         </div>
       </section>
+
+      <FAQSection />
     </div>
   );
 }

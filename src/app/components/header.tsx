@@ -29,8 +29,8 @@ export default function NavBarMain() {
             {/* Logo */}
             <Link href={`/`}>
               <div className="flex items-center p-1">
-                <Image src="/logo.png" alt="Top Grey Logo" width={150} height={150} className="h-10 w-auto" />
-                <Image src="/logo - text.png" alt="Text Logo" width={150} height={32} className="h-8 ml-1 w-auto" />
+                <Image src="/Ailestra/logo.png" alt="Top Grey Logo" width={150} height={150} className="h-10 w-auto" />
+                <Image src="/Ailestra/logo - text.png" alt="Text Logo" width={150} height={32} className="h-8 ml-1 w-auto" />
               </div>
             </Link>
 

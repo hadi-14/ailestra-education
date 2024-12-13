@@ -23,7 +23,7 @@ export const metadata: Metadata = {
       name: 'Abdul Hadi Millwala',
     },
   ],
-  icons: "logo_shield.ico",
+  icons: "/Ailestralogo_shield.ico",
 };
 
 export default function RootLayout({
@@ -33,7 +33,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <link rel="icon" href="/logo_shield.ico" sizes="any" />
+      <link rel="icon" href="/Ailestra/logo_shield.ico" sizes="any" />
 
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased pt-16`}>
         {children}

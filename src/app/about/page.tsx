@@ -46,7 +46,7 @@ export default function AboutPage() {
             <div className="container mx-auto px-4 py-12">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
                     <Image
-                        src="/mockup.png" alt="About"
+                        src="/Ailestra/mockup.jpg" alt="About"
                         className="rounded-xl h-72 object-cover aspect-1 w-full"
                         height={576} width={576}
                     />

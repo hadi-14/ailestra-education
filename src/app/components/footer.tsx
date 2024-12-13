@@ -12,14 +12,14 @@ export default function Footer() {
           {/* Logo */}
           <div className="flex items-center py-2 pt-4">
             <Image
-              src="/logo.png"
+              src="/Ailestra/logo.png"
               alt="Top Grey Logo"
               width={150}
               height={40}
               priority
             />
             <Image
-              src="/logo - text.png"
+              src="/Ailestra/logo - text.png"
               alt="Text Logo"
               width={0}
               height={32}

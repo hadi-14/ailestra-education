@@ -9,7 +9,7 @@ export default function NavBarStudentPortal() {
                 <Link href="/">
                     <div className="flex items-center p-2.5">
                         <Image
-                            src="/logo.png"
+                            src="/Ailestra/logo.png"
                             alt="Top Grey Logo"
                             width={217}
                             height={65}
@@ -17,7 +17,7 @@ export default function NavBarStudentPortal() {
                             priority
                         />
                         <Image
-                            src="/logo - text.png"
+                            src="/Ailestra/logo - text.png"
                             alt="Text Logo"
                             width={217}
                             height={65}
