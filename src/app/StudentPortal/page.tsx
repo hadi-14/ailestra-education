@@ -1,7 +1,6 @@
 'use client';
 import Image from 'next/image'
 // import Link from 'next/link'
-import NavBarStudentPortal from './components/header';
 import { useState, useRef } from 'react';
 
 interface Assignment {
@@ -83,16 +82,14 @@ export default function DashboardPage() {
 
   return (
     <div className="relative w-full bg-white">
-      <NavBarStudentPortal />
-
       {/* Gradient Border */}
       <div className="h-4 bg-gradient-to-r from-[#86252E] to-[#0D0050]"></div>
 
       {/* Hero Section */}
-      <section className="relative bg-[#A30000] py-12">
+      <section className="relative bg-[#FF0000] py-12">
         {/* Background Image with Red Overlay */}
         <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('/background.png')" }}></div>
-        <div className="absolute inset-0 bg-[#A30000] opacity-60"></div>
+        <div className="absolute inset-0 bg-[#FF0000] opacity-60"></div>
 
         <div className="relative max-w-7xl mx-auto px-8">
           <div className="grid md:grid-cols-3 gap-8">

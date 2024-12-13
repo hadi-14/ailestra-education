@@ -142,7 +142,7 @@ export default function CoursesPage() {
                 className="relative h-48 mb-4"
                 style={{ backgroundImage: "url('/background.png')" }}
             >
-                <div className="w-full h-full bg-[#A30000] opacity-80" />
+                <div className="w-full h-full bg-[#FF0000] opacity-60" />
 
                 <div className="absolute left-1/4 transform -translate-x-1/2 bottom-[-1.5rem]">
                     <div className="bg-gray-200 rounded-xl border border-stone-300 px-6 py-4">

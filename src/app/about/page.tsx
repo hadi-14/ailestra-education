@@ -1,6 +1,6 @@
 import React from 'react';
-import NavBarMain from '../components/header';
 import Image from "next/image";
+import FAQSection from '../components/faq';
 
 type SectionProps = {
     title: string;
@@ -29,11 +29,9 @@ const ContentSection: React.FC<SectionProps> = ({ title, content, className = ""
 export default function AboutPage() {
     return (
         <div className="min-h-screen bg-white">
-            <NavBarMain />
-
             {/* Hero Section */}
             <div className="relative h-48 mb-4" style={{ backgroundImage: "url('/background.png')" }}>
-                <div className="w-full h-full bg-[#A30000] opacity-80" />
+                <div className="w-full h-full bg-[#FF0000] opacity-60" />
 
                 <div className="absolute left-1/4 transform -translate-x-1/2 bottom-[-1.5rem]">
                     <div className="bg-gray-200 rounded-xl border border-stone-300 px-6 py-4">
@@ -76,6 +74,8 @@ export default function AboutPage() {
                 </div>
 
             </div>
+
+            <FAQSection />
         </div>
     );
 };

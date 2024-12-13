@@ -6,7 +6,6 @@ import { ChevronLeft, ChevronRight, Save, Send } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { db, storage } from '@/firebase/config';
-import NavBarMain from '@/app/components/header';
 
 interface FormData {
   personalInfo: {
@@ -791,7 +790,6 @@ const AdmissionForm = () => {
   
   return (
     <div className="min-h-screen bg-white pb-8">
-      <NavBarMain />
       {notification && (
         <div className="fixed top-4 right-4 z-50 max-w-md">
           <Alert className={notification.type === 'error' ? 'bg-red-50' : 'bg-green-50'}>
@@ -802,7 +800,7 @@ const AdmissionForm = () => {
 
       {/* Hero Section */}
       <div className="Hero relative h-48" style={{ backgroundImage: "url('/background.png')" }}>
-      <div className='bg-[#A30000] opacity-80 h-full w-full'></div>
+      <div className='bg-[#FF0000] opacity-60 h-full w-full'></div>
         <div className="absolute left-1/4 transform -translate-x-1/2 bottom-[-2rem]">
           <div className="bg-gray-200 rounded-xl border border-stone-300 px-6 py-4">
             <h1 className="text-violet-950 text-4xl font-bold">Admission</h1>

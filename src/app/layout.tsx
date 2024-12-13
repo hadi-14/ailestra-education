@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Footer from "./components/footer";
+import NavBarMain from './components/header';
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -36,6 +37,7 @@ export default function RootLayout({
       <link rel="icon" href="/Ailestra/logo_shield.ico" sizes="any" />
 
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased pt-16`}>
+        <NavBarMain />
         {children}
       <Footer />
       </body>
