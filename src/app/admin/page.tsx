@@ -309,7 +309,7 @@ const AdminDashboard: React.FC = () => {
     return (
         <div className="min-h-screen relative w-full bg-gray-50">
             {/* Hero Section */}
-            <div className="relative h-48 mb-4" style={{ backgroundImage: "url('/background.png')" }}>
+            <div className="relative h-48 mb-4" style={{ backgroundImage: "url('/top_header_bg.jpg')" }}>
                 <div className="w-full h-full bg-green-950 opacity-80" />
 
                 <div className="absolute left-1/4 transform -translate-x-1/2 bottom-[-1.5rem]">

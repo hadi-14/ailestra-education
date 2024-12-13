@@ -799,7 +799,7 @@ const AdmissionForm = () => {
       )}
 
       {/* Hero Section */}
-      <div className="Hero relative h-48" style={{ backgroundImage: "url('/background.png')" }}>
+      <div className="Hero relative h-48" style={{ backgroundImage: "url('/top_header_bg.jpg')" }}>
       <div className='bg-[#FF0000] opacity-60 h-full w-full'></div>
         <div className="absolute left-1/4 transform -translate-x-1/2 bottom-[-2rem]">
           <div className="bg-gray-200 rounded-xl border border-stone-300 px-6 py-4">

@@ -88,7 +88,7 @@ export default function DashboardPage() {
       {/* Hero Section */}
       <section className="relative bg-[#FF0000] py-12">
         {/* Background Image with Red Overlay */}
-        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('/background.png')" }}></div>
+        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('/top_header_bg.jpg')" }}></div>
         <div className="absolute inset-0 bg-[#FF0000] opacity-60"></div>
 
         <div className="relative max-w-7xl mx-auto px-8">
