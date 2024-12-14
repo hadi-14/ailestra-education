@@ -13,8 +13,6 @@ import {
 import { db, storage } from '@/firebase/config';
 import Image from "next/image";
 import { getDownloadURL, ref } from 'firebase/storage';
-import { saveAs } from 'file-saver';
-import axios from 'axios';
 
 // Interfaces for type safety
 interface PersonalInfo {
