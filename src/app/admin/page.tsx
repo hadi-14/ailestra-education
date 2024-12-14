@@ -1,6 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import { Eye, X, CheckCircle, XCircle } from 'lucide-react';
+import { Eye, X, CheckCircle, XCircle, Download } from 'lucide-react';
 import {
     collection,
     getDocs,
@@ -10,8 +10,11 @@ import {
     doc,
     deleteDoc
 } from 'firebase/firestore';
-import { db } from '@/firebase/config';
+import { db, storage } from '@/firebase/config';
 import Image from "next/image";
+import { getDownloadURL, ref } from 'firebase/storage';
+import { saveAs } from 'file-saver';
+import axios from 'axios';
 
 // Interfaces for type safety
 interface PersonalInfo {
@@ -182,6 +185,36 @@ const AdminDashboard: React.FC = () => {
     const closeDetailsModal = () => {
         setSelectedEntry(null);
     };
+    // New state for document viewer
+    const [documentViewer, setDocumentViewer] = useState<{
+        imageUrl: string;
+        title: string;
+    } | null>(null);
+
+    // Download document function
+    const downloadDocument = async (storageReference: string, documentName: string) => {
+        getDownloadURL(ref(storage, storageReference))
+        .then((url) => {
+            // This can be downloaded directly:
+            const xhr = new XMLHttpRequest();
+            xhr.responseType = 'blob';
+            // xhr.setRequestHeader('Access-Control-Allow-Credentials', true)
+            
+            xhr.onload = () => {
+            const blob = xhr.response;
+            const link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.target = '_blank';
+            link.download = documentName;
+            link.click();
+            };
+            xhr.open('GET', url);
+            // xhr.setRequestHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+            xhr.send();
+        })
+        .catch((error) => console.error(error));
+
+    };     
 
     const renderQuestionsSection = () => (
         <div className="container mx-auto px-4 mt-8">
@@ -457,42 +490,86 @@ const AdminDashboard: React.FC = () => {
                                     {selectedEntry.documents?.profilePicture && (
                                         <div>
                                             <p className="font-medium mb-2">Profile Picture</p>
-
-                                            <Image
-                                                src={selectedEntry.documents.profilePicture}
-                                                alt={`Profile`}
-                                                width={192}
-                                                height={192}
-                                                className="w-full h-48 object-cover rounded-lg mb-2"
-                                            />
-
+                                            <div className="relative">
+                                                <Image
+                                                    src={selectedEntry.documents.profilePicture}
+                                                    alt={`Profile`}
+                                                    width={192}
+                                                    height={192}
+                                                    className="w-full h-48 object-cover rounded-lg mb-2"
+                                                    onClick={() => setDocumentViewer({
+                                                        imageUrl: selectedEntry.documents?.profilePicture || '',
+                                                        title: 'Profile Picture'
+                                                    })}
+                                                />
+                                                <button
+                                                    onClick={() => downloadDocument(
+                                                        selectedEntry.documents?.profilePicture || '',
+                                                        'Profile Picture'
+                                                    )}
+                                                    className="absolute top-2 right-2 bg-white/70 rounded-full p-1 hover:bg-white"
+                                                    title="Download"
+                                                >
+                                                    <Download size={20} />
+                                                </button>
+                                            </div>
                                         </div>
                                     )}
                                     {selectedEntry.documents?.characterCertificate && (
                                         <div>
                                             <p className="font-medium mb-2">Character Certificate</p>
-                                            <Image
-                                                src={selectedEntry.documents.characterCertificate}
-                                                alt={`Character Certificate`}
-                                                width={192}
-                                                height={192}
-                                                className="w-full h-48 object-cover rounded-lg mb-2"
-                                            />
-
+                                            <div className="relative">
+                                                <Image
+                                                    src={selectedEntry.documents.characterCertificate}
+                                                    alt={`Character Certificate`}
+                                                    width={192}
+                                                    height={192}
+                                                    className="w-full h-48 object-cover rounded-lg mb-2"
+                                                    onClick={() => setDocumentViewer({
+                                                        imageUrl: selectedEntry.documents?.characterCertificate || '',
+                                                        title: 'Character Certificate'
+                                                    })}
+                                                />
+                                                <button
+                                                    onClick={() => downloadDocument(
+                                                        selectedEntry.documents?.characterCertificate || '',
+                                                        'Character Certificate'
+                                                    )}
+                                                    className="absolute top-2 right-2 bg-white/70 rounded-full p-1 hover:bg-white"
+                                                    title="Download"
+                                                >
+                                                    <Download size={20} />
+                                                </button>
+                                            </div>
                                         </div>
                                     )}
                                     {selectedEntry.documents?.previousMarksheets && (
                                         <div>
                                             <p className="font-medium mb-2">Previous Marksheets</p>
                                             {selectedEntry.documents.previousMarksheets.map((marksheet, index) => (
-                                                <Image
-                                                    src={marksheet}
-                                                    alt={`Marksheet ${index + 1}`}
-                                                    width={192}
-                                                    height={192}
-                                                    className="w-full h-48 object-cover rounded-lg mb-2"
-                                                    key={index}
-                                                />
+                                                <div key={index} className="relative mb-2">
+                                                    <Image
+                                                        src={marksheet}
+                                                        alt={`Marksheet ${index + 1}`}
+                                                        width={192}
+                                                        height={192}
+                                                        className="w-full h-48 object-cover rounded-lg"
+                                                        onClick={() => setDocumentViewer({
+                                                            imageUrl: marksheet,
+                                                            title: `Marksheet ${index + 1}`
+                                                        })}
+                                                    />
+                                                    <button
+                                                        onClick={() => downloadDocument(
+                                                            marksheet,
+                                                            `Marksheet ${index + 1}`
+                                                        )}
+                                                        className="absolute top-2 right-2 bg-white/70 rounded-full p-1 hover:bg-white"
+                                                        title="Download"
+                                                    >
+                                                        <Download size={20} />
+                                                    </button>
+                                                </div>
                                             ))}
                                         </div>
                                     )}
@@ -568,6 +645,36 @@ const AdminDashboard: React.FC = () => {
                                         : 'Reset Status'}
                                 </button>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {documentViewer && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+                    <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full p-6 relative">
+                        <button
+                            onClick={() => setDocumentViewer(null)}
+                            className="absolute top-4 right-4 text-gray-600 hover:text-gray-900"
+                        >
+                            <X size={24} />
+                        </button>
+                        <h2 className="text-2xl font-bold mb-6 text-green-950 border-b pb-3">
+                            {documentViewer.title}
+                        </h2>
+
+                        <div className="flex flex-col items-center">
+                            <img
+                                src={documentViewer.imageUrl}
+                                alt="Document"
+                                className="max-w-full max-h-[70vh] object-contain mb-4"
+                            />
+                            <button
+                                onClick={() => downloadDocument(documentViewer.imageUrl, documentViewer.title)}
+                                className="bg-green-950 text-white px-4 py-2 rounded-lg hover:bg-green-800 transition flex items-center"
+                            >
+                                <Download className="mr-2" size={20} /> Download Document
+                            </button>
                         </div>
                     </div>
                 </div>

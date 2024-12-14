@@ -1,0 +1,7 @@
+[
+    {
+      "origin": ["http://localhost:3000", "https://ailestra-education.vercel.app", "https://ailestra-education.com"],
+      "method": ["GET"],
+      "maxAgeSeconds": 3600
+    }
+  ]
