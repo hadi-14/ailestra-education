@@ -24,7 +24,7 @@ export const metadata: Metadata = {
       name: 'Abdul Hadi Millwala',
     },
   ],
-  icons: "/Ailestralogo_shield.ico",
+  icons: "/Ailestra/logo_shield.ico",
 };
 
 export default function RootLayout({
