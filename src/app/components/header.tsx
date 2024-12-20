@@ -3,16 +3,25 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { useScrollPosition } from '@/hooks/use-scroll-position';
-import LoginModal from './LoginModal'; // Adjust the import path as needed
+import LoginModal from './LoginModal';
+import { Menu, X } from 'lucide-react';
 
 export default function NavBarMain() {
   const { isScrolled, direction } = useScrollPosition(50);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const navLinks = [
+    { href: '/about', label: 'About' },
+    { href: '/courses', label: 'Courses' },
+    { href: '/StudentPortal/admission', label: 'Admission', className: 'bg-[#16007E]' },
+  ];
 
   return (
     <>
       <nav 
         className={`
+          w-screen
           fixed top-0 left-0 right-0 z-50 
           h-16 bg-[#DADADA] shadow-md 
           transition-transform duration-300 ease-out
@@ -24,38 +33,95 @@ export default function NavBarMain() {
           }
         `}
       >
-        <div className="flex items-center justify-center px-6 pt-2">
+        <div className="flex items-center justify-center h-full px-4 md:px-6">
           <div className="flex items-center justify-between w-full max-w-[1300px]">
             {/* Logo */}
-            <Link href={`/`}>
+            <Link href={`/`} className="flex-shrink-0">
               <div className="flex items-center p-1">
                 <Image src="/Ailestra/logo.png" alt="Top Grey Logo" width={150} height={150} className="h-10 w-auto" />
                 <Image src="/Ailestra/logo - text.png" alt="Text Logo" width={150} height={32} className="h-8 ml-1 w-auto" />
               </div>
             </Link>
 
-            {/* Nav Links */}
-            <div className="flex items-center gap-2 md:gap-4">
-              <Link href={`/about`}>
-                <p className="text-gray-600 font-bold text-sm">About</p>
-              </Link>
-              <Link href={`/courses`}>
-                <p className="text-gray-600 font-bold text-sm">Courses</p>
-              </Link>
-              <Link href={`/StudentPortal/admission`}>
-                <button className="px-3 py-2 bg-[#16007E] text-white font-bold rounded-lg text-sm">
-                  Admission
-                </button>
-              </Link>
+            {/* Desktop Nav Links */}
+            <div className="hidden md:flex items-center justify-center gap-6">
+              {navLinks.map((link) => (
+                <Link key={link.href} href={link.href}>
+                  {link.className ? (
+                    <button className={`px-4 py-2 ${link.className} text-white font-bold rounded-lg text-sm hover:opacity-90 transition-opacity`}>
+                      {link.label}
+                    </button>
+                  ) : (
+                    <p className="text-gray-600 font-bold text-sm hover:text-gray-800 transition-colors">{link.label}</p>
+                  )}
+                </Link>
+              ))}
               <button 
                 onClick={() => setIsLoginModalOpen(true)}
-                className="px-3 py-2 bg-[#177A05] text-white font-bold rounded-lg text-sm"
+                className="px-4 py-2 bg-[#177A05] text-white font-bold rounded-lg text-sm hover:opacity-90 transition-opacity"
+              >
+                Login
+              </button>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button 
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="md:hidden p-2 hover:bg-gray-200 rounded-lg transition-colors"
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? (
+                <X className="h-6 w-6 text-gray-600" />
+              ) : (
+                <Menu className="h-6 w-6 text-gray-600" />
+              )}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Menu */}
+        {isMobileMenuOpen && (
+          <div className="md:hidden absolute top-16 left-0 right-0 bg-[#DADADA] shadow-lg border-t border-gray-200">
+            <div className="flex flex-col p-4 space-y-3">
+              {navLinks.map((link) => (
+                <Link key={link.href} href={link.href} className="w-full">
+                  {link.className ? (
+                    <button className={`
+                      w-full px-4 py-3 
+                      ${link.className} 
+                      text-white font-bold rounded-lg 
+                      text-base text-center
+                      hover:opacity-90 transition-opacity
+                      shadow-sm
+                    `}>
+                      {link.label}
+                    </button>
+                  ) : (
+                    <div className="w-full px-4 py-3 text-gray-600 font-bold text-base text-center hover:bg-gray-200 rounded-lg transition-colors">
+                      {link.label}
+                    </div>
+                  )}
+                </Link>
+              ))}
+              <button 
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  setIsLoginModalOpen(true);
+                }}
+                className="
+                  w-full px-4 py-3 
+                  bg-[#177A05] text-white 
+                  font-bold rounded-lg 
+                  text-base text-center
+                  hover:opacity-90 transition-opacity
+                  shadow-sm
+                "
               >
                 Login
               </button>
             </div>
           </div>
-        </div>
+        )}
       </nav>
 
       {/* Login Modal */}

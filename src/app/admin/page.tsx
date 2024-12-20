@@ -192,27 +192,27 @@ const AdminDashboard: React.FC = () => {
     // Download document function
     const downloadDocument = async (storageReference: string, documentName: string) => {
         getDownloadURL(ref(storage, storageReference))
-        .then((url) => {
-            // This can be downloaded directly:
-            const xhr = new XMLHttpRequest();
-            xhr.responseType = 'blob';
-            // xhr.setRequestHeader('Access-Control-Allow-Credentials', true)
-            
-            xhr.onload = () => {
-            const blob = xhr.response;
-            const link = document.createElement('a');
-            link.href = window.URL.createObjectURL(blob);
-            link.target = '_blank';
-            link.download = documentName;
-            link.click();
-            };
-            xhr.open('GET', url);
-            // xhr.setRequestHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-            xhr.send();
-        })
-        .catch((error) => console.error(error));
+            .then((url) => {
+                // This can be downloaded directly:
+                const xhr = new XMLHttpRequest();
+                xhr.responseType = 'blob';
+                // xhr.setRequestHeader('Access-Control-Allow-Credentials', true)
 
-    };     
+                xhr.onload = () => {
+                    const blob = xhr.response;
+                    const link = document.createElement('a');
+                    link.href = window.URL.createObjectURL(blob);
+                    link.target = '_blank';
+                    link.download = documentName;
+                    link.click();
+                };
+                xhr.open('GET', url);
+                // xhr.setRequestHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+                xhr.send();
+            })
+            .catch((error) => console.error(error));
+
+    };
 
     const renderQuestionsSection = () => (
         <div className="container mx-auto px-4 mt-8">
@@ -649,33 +649,38 @@ const AdminDashboard: React.FC = () => {
             )}
 
             {documentViewer && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-                    <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full p-6 relative">
-                        <button
-                            onClick={() => setDocumentViewer(null)}
-                            className="absolute top-4 right-4 text-gray-600 hover:text-gray-900"
-                        >
-                            <X size={24} />
-                        </button>
-                        <h2 className="text-2xl font-bold mb-6 text-green-950 border-b pb-3">
-                            {documentViewer.title}
-                        </h2>
-
-                        <div className="flex flex-col items-center">
-                            <img
-                                src={documentViewer.imageUrl}
-                                alt="Document"
-                                className="max-w-full max-h-[70vh] object-contain mb-4"
-                            />
-                            <button
-                                onClick={() => downloadDocument(documentViewer.imageUrl, documentViewer.title)}
-                                className="bg-green-950 text-white px-4 py-2 rounded-lg hover:bg-green-800 transition flex items-center"
-                            >
-                                <Download className="mr-2" size={20} /> Download Document
-                            </button>
-                        </div>
-                    </div>
-                </div>
+               <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+               <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl h-auto p-6 relative">
+                   <button
+                       onClick={() => setDocumentViewer(null)}
+                       className="absolute top-4 right-4 text-gray-600 hover:text-gray-900"
+                       aria-label="Close Viewer"
+                   >
+                       <X size={24} />
+                   </button>
+                   <h2 className="text-2xl font-bold mb-6 text-green-950 border-b pb-3">
+                       {documentViewer.title}
+                   </h2>
+           
+                   <div className="flex items-center justify-center h-[75vh] mb-4">
+                       <Image
+                           src={documentViewer.imageUrl}
+                           alt="Document"
+                           className="object-contain max-h-full max-w-full scale-[.85]"
+                           priority
+                           fill
+                       />
+                   </div>
+                   
+                   <button
+                       onClick={() => downloadDocument(documentViewer.imageUrl, documentViewer.title)}
+                       className="bg-green-950 text-white px-4 py-2 rounded-lg hover:bg-green-800 transition flex items-center absolute bottom-4 right-4"
+                   >
+                       <Download className="mr-2" size={20} /> Download Document
+                   </button>
+               </div>
+           </div>
+           
             )}
         </div>
     );

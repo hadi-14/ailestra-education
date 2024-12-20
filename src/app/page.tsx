@@ -57,7 +57,7 @@ function HeroSection() {
           </motion.div>
         </AnimatePresence>
         <div className="relative z-10 text-end h-full text-white">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
@@ -99,7 +99,7 @@ const AutoFeatureSelector: React.FC = () => {
       "With a focus on individual growth, our personalized approach ensures every student achieves their full potential.",
     "Global Perspectives":
       "We emphasize international standards and a global outlook, equipping students to thrive in a connected world.",
-  }), []); 
+  }), []);
 
   useEffect(() => {
     const startAutoPlay = () => {
@@ -141,7 +141,7 @@ const AutoFeatureSelector: React.FC = () => {
   };
 
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
@@ -191,108 +191,109 @@ const AutoFeatureSelector: React.FC = () => {
 
 function AilestraSection() {
   return (
-    <motion.section 
+    <motion.section
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
       viewport={{ once: true }}
       className="relative bg-[#FF0000] py-8 align-middle "
     >
-<section className="relative bg-[#FF0000] py-8 align-middle ">
-      <div className="absolute inset-0">
-        <Image
-          src="/background.png"
-          alt="Background"
-          layout="fill"
-          objectFit="cover"
-          objectPosition="center"
-          priority={true} // Ensures the background loads quickly
-        />
-      </div>
-      <div className="absolute inset-0 bg-[#FF0000] opacity-60"></div>
-
-      <div className="relative max-w-7xl mx-auto bg-white rounded-lg p-6 mb-8 flex items-center px-28">
-        <Image
-          src="/Ailestra/wing.png"
-          alt="left wing"
-          layout="intrinsic"
-          width={250}
-          height={250}
-          priority
-          className="transform -scale-x-100 pb-20"
-        />
-        <div className="flex-1">
-          <h2 className="text-3xl font-bold text-[#B80000] mb-4 text-center">
-            Why Ailestra?
-          </h2>
-          <AutoFeatureSelector />
+      <section className="relative bg-[#FF0000] py-8 align-middle ">
+        <div className="absolute inset-0">
+          <Image
+            src="/background.png"
+            alt="Background"
+            layout="fill"
+            objectFit="cover"
+            objectPosition="center"
+            priority={true} // Ensures the background loads quickly
+          />
         </div>
-        <Image
-          src="/Ailestra/wing.png"
-          alt="right wing"
-          layout="intrinsic"
-          width={250}
-          height={250}
-          priority
-          className="pb-20"
-        />
-      </div>
+        <div className="absolute inset-0 bg-[#FF0000] opacity-60"></div>
 
-      <div className="relative max-w-7xl mx-auto text-white mb-8">
-        <h2 className="text-2xl font-bold mb-4">Our Courses</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <p className="text-base">
-            Our diverse courses cater to every stage of learning, offering
-            academic programs like KBSE, AKU-EB, CAIE O/A Level, IGCSE, and IB,
-            alongside English Language Programs for communication and writing
-            skills. Enhance your tech proficiency with ICT and programming
-            courses, including Python, robotics, and advanced tools. Unleash
-            creativity through practical skills in graphic design, digital
-            marketing, photography, event planning, and more, ensuring you gain
-            the expertise needed for academic and professional success.
-          </p>
-          <div className="grid grid-cols-2 gap-2">
-            {[
-              "Foundation Program",
-              "English Language Programs",
-              "ICT Programs",
-              "Practical Skills",
-              "Programming",
-            ].map((course, i) => (
-              <div
-                key={i}
-                className="bg-white rounded-lg p-3 h-16 flex items-center justify-center bg-white/20">
-                <p className="text-white text-center font-bold">{course}</p>
-              </div>
-            ))}
-            <Link href={'/courses'} className="col-span-2 md:col-span-1 bg-[#16007E] rounded-lg p-3 m-2 justify-center">
-              <button className="text-white font-bold w-full h-full">
-                See All
-              </button>
-            </Link>
+        <div className="relative max-w-7xl lg:mx-auto bg-white rounded-lg p-6 mb-8 flex items-center mx-14">
+          <Image
+            src="/Ailestra/wing.png"
+            alt="left wing"
+            layout="intrinsic"
+            width={250}
+            height={250}
+            priority
+            className="transform -scale-x-100 pb-20 hidden lg:block"
+          />
+          <div className="flex-1">
+            <h2 className="text-3xl font-bold text-[#B80000] mb-4 text-center">
+              Why Ailestra?
+            </h2>
+            <AutoFeatureSelector />
+          </div>
+          <Image
+            src="/Ailestra/wing.png"
+            alt="right wing"
+            layout="intrinsic"
+            width={250}
+            height={250}
+            priority
+            className="pb-20 hidden lg:block"
+          />
+        </div>
 
+
+        <div className="relative max-w-7xl text-white mb-8 mx-4 lg:mx-auto">
+          <h2 className="text-2xl font-bold mb-4">Our Courses</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <p className="text-base">
+              Our diverse courses cater to every stage of learning, offering
+              academic programs like KBSE, AKU-EB, CAIE O/A Level, IGCSE, and IB,
+              alongside English Language Programs for communication and writing
+              skills. Enhance your tech proficiency with ICT and programming
+              courses, including Python, robotics, and advanced tools. Unleash
+              creativity through practical skills in graphic design, digital
+              marketing, photography, event planning, and more, ensuring you gain
+              the expertise needed for academic and professional success.
+            </p>
+            <div className="grid grid-cols-2 gap-2">
+              {[
+                "Foundation Program",
+                "English Language Programs",
+                "ICT Programs",
+                "Practical Skills",
+                "Programming",
+              ].map((course, i) => (
+                <div
+                  key={i}
+                  className="bg-white rounded-lg p-3 h-16 flex items-center justify-center bg-white/20">
+                  <p className="text-white text-center font-bold">{course}</p>
+                </div>
+              ))}
+              <Link href={'/courses'} className="col-span-2 md:col-span-1 bg-[#16007E] rounded-lg p-3 m-2 justify-center">
+                <button className="text-white font-bold w-full h-full">
+                  See All
+                </button>
+              </Link>
+
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="relative max-w-7xl mx-auto bg-white rounded-lg p-6">
-        <h2 className="text-2xl font-bold text-[#B80000] mb-4">
-          Recorded Lectures
-        </h2>
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-4">
-          {[1, 2, 3, 4, 5].map((_, i) => (
-            <Image
-              key={i}
-              src={'/Thumbnails/240f1f0d-d49f-48c2-9a67-57bb83383ff4_1024.jpg'}
-              alt={`Lecture ${i + 1}`}
-              width={300}
-              height={0}
-              className="rounded-lg border-2 border-[#B80000]"
-            />
-          ))}
+        <div className="relative max-w-7xl bg-white rounded-lg p-6 mx-4 lg:mx-auto">
+          <h2 className="text-2xl font-bold text-[#B80000] mb-4">
+            Recorded Lectures
+          </h2>
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-4">
+            {[1, 2, 3, 4, 5].map((_, i) => (
+              <Image
+                key={i}
+                src={'/Thumbnails/240f1f0d-d49f-48c2-9a67-57bb83383ff4_1024.jpg'}
+                alt={`Lecture ${i + 1}`}
+                width={300}
+                height={0}
+                className="rounded-lg border-2 border-[#B80000]"
+              />
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
     </motion.section>
   );
 }
@@ -301,16 +302,16 @@ const Embed = () => {
   const [imageClicked, setImageClicked] = useState(false);
 
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, scale: 0.9 }}
       whileInView={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
       viewport={{ once: true }}
       className="relative w-full pb-[56.25%]"
     >
-      <motion.div 
+      <motion.div
         whileHover={{ scale: 1.02 }}
-        className="absolute inset-0" 
+        className="absolute inset-0"
         onClick={() => setImageClicked(true)}
       >
         {!imageClicked ? (
@@ -350,9 +351,149 @@ const Embed = () => {
   );
 };
 
+function StatsSection() {
+  const stats = [
+    { number: "1000+", label: "students" },
+    { number: "100+", label: "teachers" }
+  ];
+
+  const affiliates = ["AKU.jpg", "CAIE.jpg", "ibdp.jpg", "SINDH.jpg"];
+
+  return (
+    <motion.section
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      viewport={{ once: true }}
+      className="max-w-7xl py-6 lg:py-12 mx-4 lg:mx-auto"
+    >
+      {/* Mobile Layout (< lg screens) */}
+      <div className="lg:hidden space-y-4">
+        {/* Stats Cards */}
+        <div className="grid grid-cols-3 gap-4">
+
+          <div className="grid grid-rows-2 gap-4">
+            {stats.map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: index * 0.2 }}
+                className={`bg-[#16007E] rounded-xl p-4 text-white text-center flex flex-col justify-center items-center`}
+              >
+                <h3 className="text-3xl font-bold">{item.number}</h3>
+                <p className="text-lg font-bold">{item.label}</p>
+              </motion.div>
+            ))}
+          </div>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
+          className="bg-[#B80000] rounded-xl p-4 text-white col-span-2"
+        >
+          <h3 className="text-2xl font-bold mb-4 text-center">
+            Affiliated With
+          </h3>
+          <div className="grid grid-cols-4 gap-4 justify-items-center px-4">
+            {affiliates.map((src, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, rotate: -10 }}
+                whileInView={{ opacity: 1, rotate: 0 }}
+                transition={{ duration: 0.3, delay: i * 0.1 }}
+                whileHover={{ scale: 1.1 }}
+                className="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-full overflow-hidden flex items-center justify-center"
+              >
+                <Image
+                  src={`/affiliates/${src}`}
+                  alt={`Affiliate ${i + 1}`}
+                  className="w-full h-full object-cover"
+                  height={64}
+                  width={64}
+                />
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+        </div>
+
+        {/* Embed Section */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
+          className="rounded-xl overflow-hidden  lg:h-96"
+        >
+          <Embed />
+        </motion.div>
+
+        {/* Affiliates Section */}
+      </div>
+
+      {/* Desktop Layout (lg+ screens) */}
+      <div className="hidden lg:grid grid-cols-3 gap-4">
+        <div className="grid grid-rows-3 gap-4">
+          <div className="grid grid-cols-2 gap-4">
+            {stats.map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: index * 0.2 }}
+                className="bg-[#16007E] rounded-2xl p-4 text-white text-center flex flex-col justify-center items-center"
+              >
+                <h3 className="text-4xl font-bold">{item.number}</h3>
+                <p className="text-xl font-bold">{item.label}</p>
+              </motion.div>
+            ))}
+          </div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+            className="bg-[#B80000] rounded-2xl mt-2 p-2 text-white row-span-2"
+          >
+            <h3 className="text-3xl font-bold mb-1 text-center pt-2">
+              Affiliated With
+            </h3>
+            <div className="grid grid-cols-2 gap-8 justify-center place-items-center pt-7 px-16">
+              {affiliates.map((src, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, rotate: -10 }}
+                  whileInView={{ opacity: 1, rotate: 0 }}
+                  transition={{ duration: 0.3, delay: i * 0.1 }}
+                  whileHover={{ scale: 1.1 }}
+                  className="w-20 h-20 bg-white rounded-full overflow-hidden flex items-center justify-center"
+                >
+                  <Image
+                    src={`/affiliates/${src}`}
+                    alt={`Affiliate ${i + 1}`}
+                    className="w-full h-full object-cover"
+                    height={64}
+                    width={64}
+                  />
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
+          className="rounded-2xl overflow-hidden col-span-2"
+        >
+          <Embed />
+        </motion.div>
+      </div>
+    </motion.section>
+  );
+}
 export default function LandingPage() {
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
@@ -360,7 +501,7 @@ export default function LandingPage() {
     >
       <HeroSection />
 
-      <motion.section 
+      <motion.section
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
@@ -368,7 +509,7 @@ export default function LandingPage() {
         className="max-w-7xl mx-auto py-8 px-4"
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
@@ -420,149 +561,83 @@ export default function LandingPage() {
 
       <AilestraSection />
 
-      <motion.section 
+      <StatsSection />
+
+      <motion.section
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         viewport={{ once: true }}
-        className="max-w-7xl mx-auto py-12"
+        className="bg-gray-300 py-12"
       >
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="grid grid-rows-1 md:grid-rows-3 gap-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {[
-                { number: "1000+", label: "students" },
-                { number: "100+", label: "teachers" }
-              ].map((item, index) => (
-                <motion.div 
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: index * 0.2 }}
-                  className="bg-[#16007E] rounded-2xl p-4 text-white text-center flex flex-col justify-center items-center"
-                >
-                  <h3 className="text-4xl font-bold">{item.number}</h3>
-                  <p className="text-xl font-bold">{item.label}</p>
-                </motion.div>
-              ))}
+        <div className="max-w-7xl bg-[#16007E] rounded-2xl grid grid-cols-1 md:grid-cols-2 gap-8 shadow-xl shadow-black overflow-hidden relative mx-4 lg:mx-auto">
+          {/* Left Side Content */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-white p-8 z-10 relative"
+          >
+            <h2 className="text-2xl font-bold mb-4">
+              For Questions,
+              <br />
+              Fill Out the Form
+              <br />
+              Or to Enroll,
+            </h2>
+            <Link href={`/StudentPortal/admission`}>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-[#B80000] text-white font-bold rounded-full px-4 py-2 mt-4 hover:bg-[#900000] transition-colors duration-300"
+              >
+                Admissions
+              </motion.button>
+            </Link>
+
+            {/* Background Elements */}
+            <div className="absolute top-0 left-0 w-full h-full">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.5 }}
+                whileInView={{ opacity: 0.15, scale: 1 }}
+                transition={{ duration: 0.5 }}
+                className="absolute top-[-50px] left-[-50px] w-48 h-48 bg-white/15 rounded-full"
+              ></motion.div>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.5 }}
+                whileInView={{ opacity: 0.10, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="absolute bottom-[-50px] right-[-50px] w-64 h-64 bg-white/10 rounded-full"
+              ></motion.div>
             </div>
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              className="bg-[#B80000] rounded-2xl mt-2 p-2 text-white row-span-2"
-            >
-              <h3 className="text-3xl font-bold mb-1 text-center pt-2">
-                Affiliated With
-              </h3>
-              <div className="grid grid-cols-2 gap-8 justify-center place-items-center pt-7 px-16">
-                {["AKU.jpg", "CAIE.jpg", "ibdp.jpg", "SINDH.jpg"].map((src, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, rotate: -10 }}
-                    whileInView={{ opacity: 1, rotate: 0 }}
-                    transition={{ duration: 0.3, delay: i * 0.1 }}
-                    whileHover={{ scale: 1.1 }}
-                    className= "w-20 h-20 bg-white rounded-full overflow-hidden flex items-center justify-center"
-                    >
-                      <Image
-                        src={`/affiliates/${src}`}
-                        alt={`Image ${i + 1}`}
-                        className="w-full h-full object-cover"
-                        height={64}
-                        width={64}
-                      />
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
-            </div>
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              className="rounded-2xl overflow-hidden col-span-2"
-            >
-              <Embed />
-            </motion.div>
-          </div>
-        </motion.section>
-  
-        <motion.section 
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="bg-gray-300 py-12"
-        >
-          <div className="max-w-7xl mx-auto bg-[#16007E] rounded-2xl grid grid-cols-1 md:grid-cols-2 gap-8 shadow-xl shadow-black overflow-hidden relative">
-            {/* Left Side Content */}
-            <motion.div 
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-              className="text-white p-8 z-10 relative"
-            >
-              <h2 className="text-2xl font-bold mb-4">
-                For Questions,
-                <br />
-                Fill Out the Form
-                <br />
-                Or to Enroll,
-              </h2>
-              <Link href={`/StudentPortal/admission`}>
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="bg-[#B80000] text-white font-bold rounded-full px-4 py-2 mt-4 hover:bg-[#900000] transition-colors duration-300"
-                >
-                  Admissions
-                </motion.button>
-              </Link>
-  
-              {/* Background Elements */}
-              <div className="absolute top-0 left-0 w-full h-full">
-                <motion.div 
-                  initial={{ opacity: 0, scale: 0.5 }}
-                  whileInView={{ opacity: 0.15, scale: 1 }}
-                  transition={{ duration: 0.5 }}
-                  className="absolute top-[-50px] left-[-50px] w-48 h-48 bg-white/15 rounded-full"
-                ></motion.div>
-                <motion.div 
-                  initial={{ opacity: 0, scale: 0.5 }}
-                  whileInView={{ opacity: 0.10, scale: 1 }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
-                  className="absolute bottom-[-50px] right-[-50px] w-64 h-64 bg-white/10 rounded-full"
-                ></motion.div>
-              </div>
-            </motion.div>
-  
-            {/* Right Side - Contact Form */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <ContactForm />
-            </motion.div>
-  
-            {/* Decorative Shapes */}
-            <motion.div 
-              initial={{ opacity: 0, rotate: -45, scale: 0.5 }}
-              whileInView={{ opacity: 0.2, rotate: 45, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              className="absolute top-0 right-0 w-48 h-48 bg-white/20 rounded-full transform rotate-45 translate-x-1/4 -translate-y-1/4"
-            ></motion.div>
-            <motion.div 
-              initial={{ opacity: 0, rotate: 45, scale: 0.5 }}
-              whileInView={{ opacity: 0.1, rotate: -45, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="absolute bottom-0 left-0 w-64 h-64 bg-white/8 rounded-full transform -rotate-45 -translate-x-1/4 translate-y-1/4"
-            ></motion.div>
-          </div>
-        </motion.section>
-  
-        <FAQSection />
-      </motion.div>
-    );
-  }
+          </motion.div>
+
+          {/* Right Side - Contact Form */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <ContactForm />
+          </motion.div>
+
+          {/* Decorative Shapes */}
+          <motion.div
+            initial={{ opacity: 0, rotate: -45, scale: 0.5 }}
+            whileInView={{ opacity: 0.2, rotate: 45, scale: 1 }}
+            transition={{ duration: 0.5 }}
+            className="absolute top-0 right-0 w-48 h-48 bg-white/20 rounded-full transform rotate-45 translate-x-1/4 -translate-y-1/4"
+          ></motion.div>
+          <motion.div
+            initial={{ opacity: 0, rotate: 45, scale: 0.5 }}
+            whileInView={{ opacity: 0.1, rotate: -45, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="absolute bottom-0 left-0 w-64 h-64 bg-white/8 rounded-full transform -rotate-45 -translate-x-1/4 translate-y-1/4"
+          ></motion.div>
+        </div>
+      </motion.section>
+
+      <FAQSection />
+    </motion.div>
+  );
+}
