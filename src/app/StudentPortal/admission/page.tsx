@@ -803,7 +803,7 @@ const AdmissionForm = () => {
       <div className='bg-[#FF0000] opacity-60 h-full w-full'></div>
         <div className="absolute left-1/4 transform -translate-x-1/2 bottom-[-2rem]">
           <div className="bg-gray-200 rounded-xl border border-stone-300 px-6 py-4">
-            <h1 className="text-violet-950 text-4xl font-bold">Admission</h1>
+            <h1 className="text-violet-950 text-2xl md:text-4xl font-bold">Admission</h1>
           </div>
         </div>
       </div>

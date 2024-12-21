@@ -17,7 +17,7 @@ function HeroSection() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
-    }, 3000);
+    }, 10000);
 
     return () => clearInterval(interval);
   }, [slides.length]);
@@ -29,12 +29,12 @@ function HeroSection() {
   const slideVariants = {
     initial: { opacity: 0 },
     animate: { opacity: 0.7 },
-    exit: { opacity: 0 }
+    exit: { opacity: 0 },
   };
 
   return (
-    <section className="relative h-[400px]">
-      <div className="h-2 bg-gradient-to-r from-[#86252E] to-[#0D0050]"></div>
+    <section className="relative h-[15vh] lg:h-[400px]">
+      <div className="h-1 md:h-2 bg-gradient-to-r from-[#86252E] to-[#0D0050]" />
 
       <div className="flex items-center justify-center h-full relative bg-[#004F89]/80">
         <AnimatePresence mode="wait">
@@ -49,14 +49,15 @@ function HeroSection() {
             <Image
               src={slides[currentSlide]}
               alt={`Slide ${currentSlide + 1}`}
-              width={1904}
-              height={400}
+              // width={1904}
+              // height={400}
+              fill
               className="absolute inset-0 w-full h-full object-cover opacity-70"
               priority
             />
           </motion.div>
         </AnimatePresence>
-        <div className="relative z-10 text-end h-full text-white">
+        <div className="relative z-10 text-end h-full text-white mr-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -69,7 +70,7 @@ function HeroSection() {
                 whileHover={{ scale: 1.2 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={() => handleSlideChange(index)}
-                className={`w-4 h-4 rounded-full cursor-pointer ${currentSlide === index ? "bg-white" : "bg-gray-400"
+                className={`w-1.5 h-1.5 md:w-4 md:h-4 rounded-full cursor-pointer ${currentSlide === index ? "bg-white" : "bg-gray-400"
                   }`}
               ></motion.div>
             ))}
@@ -77,7 +78,7 @@ function HeroSection() {
         </div>
       </div>
 
-      <div className="h-2 bg-gradient-to-r from-[#86252E] to-[#0D0050]"></div>
+      <div className="h-1 md:h-2 bg-gradient-to-r from-[#86252E] to-[#0D0050]"></div>
     </section>
   );
 }
@@ -86,7 +87,7 @@ const AutoFeatureSelector: React.FC = () => {
   const [selectedFeature, setSelectedFeature] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
-  const autoPlayDuration = 2000; // 2 seconds per feature
+  const autoPlayDuration = 5000; // 5 seconds per feature
   const pauseDuration = 5000; // 5 seconds pause
   const features = useMemo(() => ({
     "Innovative Curriculum":
@@ -146,7 +147,7 @@ const AutoFeatureSelector: React.FC = () => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
       viewport={{ once: true }}
-      className="flex flex-col items-center max-w-xl mx-auto p-4"
+      className="flex flex-col items-center max-w-xl mx-auto pt-2 md:p-4"
     >
       <div className="flex gap-2 md:gap-4 mb-4">
         {Object.keys(features).map((_, i) => (
@@ -196,7 +197,7 @@ function AilestraSection() {
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
       viewport={{ once: true }}
-      className="relative bg-[#FF0000] py-8 align-middle "
+      className="relative bg-[#FF0000]"
     >
       <section className="relative bg-[#FF0000] py-8 align-middle ">
         <div className="absolute inset-0">
@@ -218,11 +219,11 @@ function AilestraSection() {
             layout="intrinsic"
             width={250}
             height={250}
-            priority
+            // priority
             className="transform -scale-x-100 pb-20 hidden lg:block"
           />
           <div className="flex-1">
-            <h2 className="text-3xl font-bold text-[#B80000] mb-4 text-center">
+            <h2 className="text-3xl md:text-3xl font-bold text-[#B80000] mb-4 text-center">
               Why Ailestra?
             </h2>
             <AutoFeatureSelector />
@@ -233,7 +234,7 @@ function AilestraSection() {
             layout="intrinsic"
             width={250}
             height={250}
-            priority
+            // priority
             className="pb-20 hidden lg:block"
           />
         </div>
@@ -266,7 +267,7 @@ function AilestraSection() {
                   <p className="text-white text-center font-bold">{course}</p>
                 </div>
               ))}
-              <Link href={'/courses'} className="col-span-2 md:col-span-1 bg-[#16007E] rounded-lg p-3 m-2 justify-center">
+              <Link href={'/courses'} className="col-span-1 bg-[#16007E] rounded-lg p-3 m-2 justify-center">
                 <button className="text-white font-bold w-full h-full">
                   See All
                 </button>
@@ -323,25 +324,26 @@ const Embed = () => {
               alt="YouTube thumbnail"
               className="rounded-lg"
             />
-            <motion.div
-              initial={{ scale: 1 }}
-              whileHover={{ scale: 1.1 }}
-              className="absolute w-16 h-16 md:w-20 md:h-20 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10"
-            >
-              <Image
-                src={`https://addplaybuttontoimage.way4info.net/Images/Icons/7.png`}
-                layout="fill"
-                alt="Play button"
-                priority
-              />
-            </motion.div>
+<div className="w-full h-full flex justify-center items-center">
+  <motion.div
+    initial={{ scale: 1 }}
+    whileHover={{ scale: 1.1 }}
+    className="relative w-12 h-12 md:w-20 md:h-20"
+  >
+    <Image
+      src={`https://addplaybuttontoimage.way4info.net/Images/Icons/7.png`}
+      layout="fill"
+      alt="Play button"
+      priority
+    />
+  </motion.div>
+</div>
           </>
         ) : (
           <iframe
             className="absolute inset-0 w-full h-full rounded-lg"
             src={`https://www.youtube.com/embed/pKqRNMwvb2Q?rel=0&showinfo=0&autoplay=1`}
             title="YouTube video"
-            frameBorder="0"
             allow="autoplay; encrypted-media; fullscreen"
             allowFullScreen
           ></iframe>
@@ -357,7 +359,7 @@ function StatsSection() {
     { number: "100+", label: "teachers" }
   ];
 
-  const affiliates = ["AKU.jpg", "CAIE.jpg", "ibdp.jpg", "SINDH.jpg"];
+  const affiliates = ["AKU.jpg", "CAIE.jpg", "SINDH.jpg", "FB Board.png", "ibdp.jpg"];
 
   return (
     <motion.section
@@ -370,7 +372,7 @@ function StatsSection() {
       {/* Mobile Layout (< lg screens) */}
       <div className="lg:hidden space-y-4">
         {/* Stats Cards */}
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-3 gap-8">
 
           <div className="grid grid-rows-2 gap-4">
             {stats.map((item, index) => (
@@ -386,36 +388,59 @@ function StatsSection() {
               </motion.div>
             ))}
           </div>
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
-          className="bg-[#B80000] rounded-xl p-4 text-white col-span-2"
-        >
-          <h3 className="text-2xl font-bold mb-4 text-center">
-            Affiliated With
-          </h3>
-          <div className="grid grid-cols-4 gap-4 justify-items-center px-4">
-            {affiliates.map((src, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, rotate: -10 }}
-                whileInView={{ opacity: 1, rotate: 0 }}
-                transition={{ duration: 0.3, delay: i * 0.1 }}
-                whileHover={{ scale: 1.1 }}
-                className="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-full overflow-hidden flex items-center justify-center"
-              >
-                <Image
-                  src={`/affiliates/${src}`}
-                  alt={`Affiliate ${i + 1}`}
-                  className="w-full h-full object-cover"
-                  height={64}
-                  width={64}
-                />
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+            className="bg-[#B80000] rounded-xl p-4 text-white col-span-2"
+          >
+            <h3 className="text-2xl font-bold mb-4 text-center">
+              Affiliated Boards
+            </h3>
+            <div className="grid grid-cols-2 gap-12 gap-x-24 justify-center place-items-center px-16">
+              {affiliates.slice(0, 4).map((src, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, rotate: -10 }}
+                  whileInView={{ opacity: 1, rotate: 0 }}
+                  transition={{ duration: 0.3, delay: i * 0.1 }}
+                  whileHover={{ scale: 1.1 }}
+                  className="w-12 h-12 bg-white rounded-full overflow-hidden flex items-center justify-center"
+                >
+                  <Image
+                    src={`/affiliates/${src}`}
+                    alt={`Affiliate ${i + 1}`}
+                    className="w-full h-full object-cover"
+                    height={32}
+                    width={32}
+                  />
+                </motion.div>
+              ))}
+              {(() => {
+                const i = 4;
+                const src = affiliates[i];
+
+                return (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, rotate: -10 }}
+                    whileInView={{ opacity: 1, rotate: 0 }}
+                    transition={{ duration: 0.3, delay: i * 0.1 }}
+                    whileHover={{ scale: 1.1 }}
+                    className="w-12 h-12 bg-white rounded-full overflow-hidden flex items-center justify-center absolute"
+                  >
+                    <Image
+                      src={`/affiliates/${src}`}
+                      alt={`Affiliate ${i + 1}`}
+                      className="w-full h-full object-cover"
+                      height={32}
+                      width={32}
+                    />
+                  </motion.div>
+                );
+              })()}
+            </div>
+          </motion.div>
         </div>
 
         {/* Embed Section */}
@@ -455,10 +480,10 @@ function StatsSection() {
             className="bg-[#B80000] rounded-2xl mt-2 p-2 text-white row-span-2"
           >
             <h3 className="text-3xl font-bold mb-1 text-center pt-2">
-              Affiliated With
+              Affiliated Boards
             </h3>
-            <div className="grid grid-cols-2 gap-8 justify-center place-items-center pt-7 px-16">
-              {affiliates.map((src, i) => (
+            <div className="grid grid-cols-2 gap-12 justify-center place-items-center pt-4 px-16">
+              {affiliates.slice(0, 4).map((src, i) => (
                 <motion.div
                   key={i}
                   initial={{ opacity: 0, rotate: -10 }}
@@ -476,6 +501,29 @@ function StatsSection() {
                   />
                 </motion.div>
               ))}
+              {(() => {
+                const i = 4;
+                const src = affiliates[i];
+
+                return (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, rotate: -10 }}
+                    whileInView={{ opacity: 1, rotate: 0 }}
+                    transition={{ duration: 0.3, delay: i * 0.1 }}
+                    whileHover={{ scale: 1.1 }}
+                    className="w-20 h-20 bg-white rounded-full overflow-hidden flex items-center justify-center absolute"
+                  >
+                    <Image
+                      src={`/affiliates/${src}`}
+                      alt={`Affiliate ${i + 1}`}
+                      className="w-full h-full object-cover"
+                      height={64}
+                      width={64}
+                    />
+                  </motion.div>
+                );
+              })()}
             </div>
           </motion.div>
         </div>
@@ -513,16 +561,17 @@ export default function LandingPage() {
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
-            className="flex items-center justify-center"
+            className="w-full flex justify-center"
           >
-            <Image
-              src="/Ailestra/mockup.png"
-              alt="About"
-              width={384}
-              height={384}
-              className="rounded-2xl h-96 object-cover aspect-1"
-              priority
-            />
+            <div className="relative md:h-96 md:w-96 h-[30vh] w-[30vh]">
+              <Image
+                src="/Ailestra/mockup.png"
+                alt="About"
+                fill
+                className="rounded-2xl object-cover aspect-1"
+                priority
+              />
+            </div>
           </motion.div>
 
           <motion.div
@@ -530,10 +579,10 @@ export default function LandingPage() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <h1 className="text-4xl font-bold text-[#B80000] mb-2 pt-7">
+            <h1 className="text-3xl md:text-4xl font-bold text-[#B80000] mb-2 pt-7">
               Ailestra Education
             </h1>
-            <p className="text-base mb-2 text-gray-950">
+            <p className="text-sm md:text-base mb-2 text-gray-950">
               Ailestra Education was envisioned by Sir Abdul Samad Jamal, the
               visionary founder of ASJ-ERDC, with a mission to redefine the
               boundaries of learning. In a rapidly evolving world where

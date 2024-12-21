@@ -81,7 +81,7 @@ export default function AboutPage() {
                     transition={{ delay: 0.2, duration: 0.5 }}
                 >
                     <div className="bg-gray-200 rounded-xl border border-stone-300 px-6 py-4">
-                        <h1 className="text-violet-950 text-4xl font-bold">
+                        <h1 className="text-violet-950 text-xl md:text-4xl font-bold">
                             About Ailestra
                         </h1>
                     </div>
@@ -133,7 +133,7 @@ export default function AboutPage() {
                     viewport={{ once: true }}
                 >
                     <motion.div 
-                        className="grid grid-rows-2 gap-4"
+                        className="flex flex-col gap-8"
                         initial={{ x: -50, opacity: 0 }}
                         whileInView={{ x: 0, opacity: 1 }}
                         transition={{ duration: 0.5 }}

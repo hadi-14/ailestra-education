@@ -17,6 +17,11 @@ export default function NavBarMain() {
     { href: '/StudentPortal/admission', label: 'Admission', className: 'bg-[#16007E]' },
   ];
 
+  // Helper function to handle navigation and menu closing
+  const handleNavigate = () => {
+    setIsMobileMenuOpen(false);
+  };
+
   return (
     <>
       <nav 
@@ -36,7 +41,7 @@ export default function NavBarMain() {
         <div className="flex items-center justify-center h-full px-4 md:px-6">
           <div className="flex items-center justify-between w-full max-w-[1300px]">
             {/* Logo */}
-            <Link href={`/`} className="flex-shrink-0">
+            <Link href={`/`} onClick={handleNavigate} className="flex-shrink-0">
               <div className="flex items-center p-1">
                 <Image src="/Ailestra/logo.png" alt="Top Grey Logo" width={150} height={150} className="h-10 w-auto" />
                 <Image src="/Ailestra/logo - text.png" alt="Text Logo" width={150} height={32} className="h-8 ml-1 w-auto" />
@@ -84,7 +89,7 @@ export default function NavBarMain() {
           <div className="md:hidden absolute top-16 left-0 right-0 bg-[#DADADA] shadow-lg border-t border-gray-200">
             <div className="flex flex-col p-4 space-y-3">
               {navLinks.map((link) => (
-                <Link key={link.href} href={link.href} className="w-full">
+                <Link key={link.href} href={link.href} onClick={handleNavigate} className="w-full">
                   {link.className ? (
                     <button className={`
                       w-full px-4 py-3 

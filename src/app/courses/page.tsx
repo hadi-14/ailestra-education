@@ -189,7 +189,7 @@ export default function CoursesPage() {
                 >
                     <div className="bg-gray-200 rounded-xl border border-stone-300 px-6 py-4">
                         <motion.h1 
-                            className="text-violet-950 text-4xl font-bold"
+                            className="text-violet-950 text-xl md:text-4xl font-bold"
                             initial={{ x: -20, opacity: 0 }}
                             animate={{ x: 0, opacity: 1 }}
                             transition={{ delay: 0.4, duration: 0.5 }}
