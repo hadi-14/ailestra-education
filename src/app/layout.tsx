@@ -25,6 +25,7 @@ export const metadata: Metadata = {
     },
   ],
   icons: "/Ailestra/logo_shield.ico",
+  keywords: ["ailestra", "ailestra-education", "school", "eduction", "coaching"]
 };
 
 export default function RootLayout({

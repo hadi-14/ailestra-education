@@ -345,7 +345,7 @@ const AdminDashboard: React.FC = () => {
 
                 <div className="absolute left-1/4 transform -translate-x-1/2 bottom-[-1.5rem]">
                     <div className="bg-gray-200 rounded-xl border border-stone-300 px-6 py-4">
-                        <h1 className="text-g text-4xl font-bold">Admin Dashboard</h1>
+                        <h1 className="text-g text-xl md:text-4xl font-bold ml-10 md:ml-0">Admin Dashboard</h1>
                     </div>
                 </div>
             </div>
