@@ -197,7 +197,7 @@ function AilestraSection() {
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
       viewport={{ once: true }}
-      className="relative bg-[#FF0000]"
+      className="relative bg-[#FF0000] overflow-hidden"
     >
       <section className="relative bg-[#FF0000] py-8 align-middle ">
         <div className="absolute inset-0">
@@ -219,8 +219,8 @@ function AilestraSection() {
             layout="intrinsic"
             width={250}
             height={250}
-            // priority
             className="transform -scale-x-100 pb-20 hidden lg:block"
+            loading="lazy"
           />
           <div className="flex-1">
             <h2 className="text-3xl md:text-3xl font-bold text-[#B80000] mb-4 text-center">
@@ -234,8 +234,8 @@ function AilestraSection() {
             layout="intrinsic"
             width={250}
             height={250}
-            // priority
             className="pb-20 hidden lg:block"
+            loading="lazy"
           />
         </div>
 
@@ -290,6 +290,7 @@ function AilestraSection() {
                 width={300}
                 height={0}
                 className="rounded-lg border-2 border-[#B80000]"
+                loading="lazy"
               />
             ))}
           </div>
@@ -323,21 +324,22 @@ const Embed = () => {
               objectFit="cover"
               alt="YouTube thumbnail"
               className="rounded-lg"
+              loading="lazy"
             />
-<div className="w-full h-full flex justify-center items-center">
-  <motion.div
-    initial={{ scale: 1 }}
-    whileHover={{ scale: 1.1 }}
-    className="relative w-12 h-12 md:w-20 md:h-20"
-  >
-    <Image
-      src={`https://addplaybuttontoimage.way4info.net/Images/Icons/7.png`}
-      layout="fill"
-      alt="Play button"
-      priority
-    />
-  </motion.div>
-</div>
+            <div className="w-full h-full flex justify-center items-center">
+              <motion.div
+                initial={{ scale: 1 }}
+                whileHover={{ scale: 1.1 }}
+                className="relative w-12 h-12 md:w-20 md:h-20"
+              >
+                <Image
+                  src={`https://addplaybuttontoimage.way4info.net/Images/Icons/7.png`}
+                  layout="fill"
+                  alt="Play button"
+                  priority
+                />
+              </motion.div>
+            </div>
           </>
         ) : (
           <iframe
@@ -367,12 +369,12 @@ function StatsSection() {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
       viewport={{ once: true }}
-      className="max-w-7xl py-6 lg:py-12 mx-4 lg:mx-auto"
+      className="max-w-7xl py-6 lg:py-12 mx-4 lg:mx-auto overflow-hidden"
     >
       {/* Mobile Layout (< lg screens) */}
       <div className="lg:hidden space-y-4">
         {/* Stats Cards */}
-        <div className="grid grid-cols-3 gap-8">
+        <div className="grid grid-cols-3 gap-4 md:gap-8">
 
           <div className="grid grid-rows-2 gap-4">
             {stats.map((item, index) => (
@@ -383,7 +385,7 @@ function StatsSection() {
                 transition={{ duration: 0.5, delay: index * 0.2 }}
                 className={`bg-[#16007E] rounded-xl p-4 text-white text-center flex flex-col justify-center items-center`}
               >
-                <h3 className="text-3xl font-bold">{item.number}</h3>
+                <h3 className="text-xl md:text-3xl font-bold">{item.number}</h3>
                 <p className="text-lg font-bold">{item.label}</p>
               </motion.div>
             ))}
@@ -413,6 +415,7 @@ function StatsSection() {
                     className="w-full h-full object-cover"
                     height={32}
                     width={32}
+                    loading="lazy"
                   />
                 </motion.div>
               ))}
@@ -435,6 +438,7 @@ function StatsSection() {
                       className="w-full h-full object-cover"
                       height={32}
                       width={32}
+                      loading="lazy"
                     />
                   </motion.div>
                 );
@@ -545,7 +549,7 @@ export default function LandingPage() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="relative w-full bg-white"
+      className="relative w-full bg-white overflow-x-hidden"
     >
       <HeroSection />
 
@@ -617,7 +621,7 @@ export default function LandingPage() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         viewport={{ once: true }}
-        className="bg-gray-300 py-12"
+        className="bg-gray-300 py-12 overflow-hidden"
       >
         <div className="max-w-7xl bg-[#16007E] rounded-2xl grid grid-cols-1 md:grid-cols-2 gap-8 shadow-xl shadow-black overflow-hidden relative mx-4 lg:mx-auto">
           {/* Left Side Content */}
