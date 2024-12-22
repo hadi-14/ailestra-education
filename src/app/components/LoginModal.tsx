@@ -98,7 +98,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
                 <div className="text-center mt-4">
                     <p className="text-sm text-gray-600">
                         Don&apos;t have an account?{' '}
-                        <Link href={`/StudentPortal/admission`} className="text-[#A30000] font-bold hover:underline" onClick={onClose}>
+                        <Link href={`/student/admission`} className="text-[#A30000] font-bold hover:underline" onClick={onClose}>
                             Sign Up
                         </Link>
                     </p>

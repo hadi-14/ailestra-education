@@ -638,7 +638,7 @@ export default function LandingPage() {
               <br />
               Or to Enroll,
             </h2>
-            <Link href={`/StudentPortal/admission`}>
+            <Link href={`/student/admission`}>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}

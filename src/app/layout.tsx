@@ -16,7 +16,10 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Ailestra Education",
+  title: {
+    default: "Ailestra Education",
+    template: "%s | Ailestra Education"
+  },
   description: "Ailestra Education was envisioned by Sir Abdul Samad Jamal, the founder of ASJ-ERDC, which oversees several educational initiatives, including Habibian’s Academy, Blooms’ Schooling System, and ASJ-Cradle of Wisdom. As technological advancements continue to reshape the educational landscape, the demand for innovative skills and modern teaching methods has never been greater. Recognizing this need, Ailestra Education emerges as a pioneering venture that integrates cutting-edge teaching approaches and offers advanced courses designed to empower the younger generation by unlocking their true potential and master the skills necessary to thrive in a rapidly evolving world.",
   authors: [
     {
@@ -24,8 +27,8 @@ export const metadata: Metadata = {
       name: 'Abdul Hadi Millwala',
     },
   ],
-  icons: "/Ailestra/logo_shield.ico",
-  keywords: ["ailestra", "ailestra-education", "school", "eduction", "coaching"]
+  icons: "favicon.ico",
+  keywords: ["ailestra", "ailestra-education", "school", "eduction", "coaching"],
 };
 
 export default function RootLayout({
@@ -35,8 +38,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <link rel="icon" href="/Ailestra/logo_shield.ico" sizes="any" />
-
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased pt-16`}>
         <NavBarMain />
         {children}

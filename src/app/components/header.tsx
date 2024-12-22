@@ -14,7 +14,7 @@ export default function NavBarMain() {
   const navLinks = [
     { href: '/about', label: 'About' },
     { href: '/courses', label: 'Courses' },
-    { href: '/StudentPortal/admission', label: 'Admission', className: 'bg-[#16007E]' },
+    { href: '/student/admission', label: 'Admission', className: 'bg-[#16007E]' },
   ];
 
   // Helper function to handle navigation and menu closing
@@ -24,17 +24,17 @@ export default function NavBarMain() {
 
   return (
     <>
-      <nav 
+      <nav
         className={`
           w-screen
           fixed top-0 left-0 right-0 z-50 
           h-16 bg-[#DADADA] shadow-md 
           transition-transform duration-300 ease-out
-          ${direction === 'scrolling-down' && isScrolled 
-            ? 'animate-stickyEntry' 
-            : isScrolled 
-            ? 'opacity-100'
-            : 'translate-y-0 opacity-100'
+          ${direction === 'scrolling-down' && isScrolled
+            ? 'animate-stickyEntry'
+            : isScrolled
+              ? 'opacity-100'
+              : 'translate-y-0 opacity-100'
           }
         `}
       >
@@ -61,7 +61,7 @@ export default function NavBarMain() {
                   )}
                 </Link>
               ))}
-              <button 
+              <button
                 onClick={() => setIsLoginModalOpen(true)}
                 className="px-4 py-2 bg-[#177A05] text-white font-bold rounded-lg text-sm hover:opacity-90 transition-opacity"
               >
@@ -70,7 +70,7 @@ export default function NavBarMain() {
             </div>
 
             {/* Mobile Menu Button */}
-            <button 
+            <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="md:hidden p-2 hover:bg-gray-200 rounded-lg transition-colors"
               aria-label="Toggle menu"
@@ -108,7 +108,7 @@ export default function NavBarMain() {
                   )}
                 </Link>
               ))}
-              <button 
+              <button
                 onClick={() => {
                   setIsMobileMenuOpen(false);
                   setIsLoginModalOpen(true);
@@ -130,9 +130,9 @@ export default function NavBarMain() {
       </nav>
 
       {/* Login Modal */}
-      <LoginModal 
-        isOpen={isLoginModalOpen} 
-        onClose={() => setIsLoginModalOpen(false)} 
+      <LoginModal
+        isOpen={isLoginModalOpen}
+        onClose={() => setIsLoginModalOpen(false)}
       />
     </>
   );
