@@ -285,7 +285,7 @@ function AilestraSection() {
             {[1, 2, 3, 4, 5].map((_, i) => (
               <Image
                 key={i}
-                src={'/Thumbnails/240f1f0d-d49f-48c2-9a67-57bb83383ff4_1024.jpg'}
+                src={'/Thumbnails/math-lessons-youtube-thumbnail-template-desig-design-aa69e9e57e635e9eecb2579c80ded65d_screen.jpg'}
                 alt={`Lecture ${i + 1}`}
                 width={300}
                 height={0}
@@ -560,6 +560,23 @@ export default function LandingPage() {
         viewport={{ once: true }}
         className="max-w-7xl mx-auto py-8 px-4"
       >
+
+        <motion.div className="relative max-w-7xl lg:mx-auto bg-[#16007E] rounded-lg p-6 mb-8 flex items-center mx-14">
+          <div className="flex-1">
+            <h2 className="text-3xl md:text-3xl font-bold text-[#B80000] mb-4 text-center">
+              Our Mission
+            </h2>
+            <p className="text-base text-white text-center">
+              At Ailestra Education, our mission is to empower learners with the
+              skills and knowledge they need to thrive in a rapidly changing
+              world. We are committed to fostering innovation, excellence, and
+              inclusivity in education, ensuring that every student has the
+              opportunity to reach their full potential.
+            </p>
+          </div>
+
+        </motion.div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
