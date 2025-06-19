@@ -279,7 +279,7 @@ function AilestraSection() {
 
         <div className="relative max-w-7xl bg-white rounded-lg p-6 mx-4 lg:mx-auto">
           <h2 className="text-2xl font-bold text-[#B80000] mb-4">
-            Recorded Lectures
+            Meet Our Teachers
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-4">
             {[1, 2, 3, 4, 5].map((_, i) => (

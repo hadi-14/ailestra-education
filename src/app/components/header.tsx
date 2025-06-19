@@ -3,18 +3,17 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { useScrollPosition } from '@/hooks/use-scroll-position';
-import LoginModal from './LoginModal';
 import { Menu, X } from 'lucide-react';
 
 export default function NavBarMain() {
   const { isScrolled, direction } = useScrollPosition(50);
-  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navLinks = [
     { href: '/about', label: 'About' },
     { href: '/courses', label: 'Courses' },
     { href: '/student/admission', label: 'Admission', className: 'bg-[#16007E]' },
+    { href: '/student/login', label: 'Student Portal', className: 'bg-[#177A05]' },
   ];
 
   // Helper function to handle navigation and menu closing
@@ -61,12 +60,6 @@ export default function NavBarMain() {
                   )}
                 </Link>
               ))}
-              <button
-                onClick={() => setIsLoginModalOpen(true)}
-                className="px-4 py-2 bg-[#177A05] text-white font-bold rounded-lg text-sm hover:opacity-90 transition-opacity"
-              >
-                Login
-              </button>
             </div>
 
             {/* Mobile Menu Button */}
@@ -111,7 +104,6 @@ export default function NavBarMain() {
               <button
                 onClick={() => {
                   setIsMobileMenuOpen(false);
-                  setIsLoginModalOpen(true);
                 }}
                 className="
                   w-full px-4 py-3 
@@ -128,12 +120,6 @@ export default function NavBarMain() {
           </div>
         )}
       </nav>
-
-      {/* Login Modal */}
-      <LoginModal
-        isOpen={isLoginModalOpen}
-        onClose={() => setIsLoginModalOpen(false)}
-      />
     </>
   );
 }

@@ -1,20 +1,22 @@
 'use client';
-import Image from 'next/image'
-// import Link from 'next/link'
+import Image from 'next/image';
 import { useState, useRef } from 'react';
+import { useRouter } from 'next/navigation';
+import { signOut } from 'firebase/auth'; // Firebase logout function
+import { auth } from '@/firebase/config'; // Adjust this path if needed
+import { useProtectedRoute } from '@/app/student/useProtectedRoute';
 
+// Interface definitions remain unchanged...
 interface Assignment {
   title: string;
   dueDate: string;
 }
-
 interface Event {
   title: string;
   time: string;
   teacher?: string;
   isExam?: boolean;
 }
-
 interface Exam {
   title: string;
   status: 'upcoming' | 'scheduled' | 'completed';
@@ -24,6 +26,8 @@ interface Exam {
 export default function DashboardPage() {
   const [scrollPercentage, setScrollPercentage] = useState(0);
   const contentRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
+  useProtectedRoute(); // Ensures only logged-in users can access
 
   const assignments: Assignment[] = [
     { title: "Mathematics HW", dueDate: "11.8.24" },
@@ -67,54 +71,64 @@ export default function DashboardPage() {
 
   const handleTrackClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!contentRef.current) return;
-    
     const trackRect = e.currentTarget.getBoundingClientRect();
     const clickPosition = (e.clientY - trackRect.top) / trackRect.height;
-    
     const scrollHeight = contentRef.current.scrollHeight;
     const containerHeight = contentRef.current.clientHeight;
     const maxScroll = scrollHeight - containerHeight;
-    
     contentRef.current.scrollTop = maxScroll * clickPosition;
   };
 
-
+  // Handle logout
+  const handleLogout = async () => {
+    try {
+      await signOut(auth); // Firebase logout
+      router.push('/student/login'); // Redirect to login page
+    } catch (error) {
+      console.error('Logout failed:', error);
+    }
+  };
 
   return (
     <div className="relative w-full bg-white">
       {/* Gradient Border */}
       <div className="h-4 bg-gradient-to-r from-[#86252E] to-[#0D0050]"></div>
-
       {/* Hero Section */}
       <section className="relative bg-[#FF0000] py-12">
         {/* Background Image with Red Overlay */}
         <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('/top_header_bg.jpg')" }}></div>
         <div className="absolute inset-0 bg-[#FF0000] opacity-60"></div>
-
-        <div className="relative max-w-7xl mx-auto px-8">
+        <button
+          onClick={handleLogout}
+          className="absolute top-2 right-2 text-white font-bold bg-[#16007E] rounded-lg px-4 py-1 mt-2 text-sm transition-colors z-10"
+        >
+          Logout
+        </button>
+        <div className="relative max-w-7xl mx-auto px-8 mt-4">
           <div className="grid md:grid-cols-3 gap-8">
             {/* Welcome Card */}
-            <div className="md:col-span-1">
+            <div className="md:col-span-1 relative">
+
               <h1 className="text-white text-4xl md:text-5xl font-bold mb-6 p-6">
                 Welcome<br />Student Name
               </h1>
+
               <div className="bg-[#D9D9D9] rounded-3xl p-6">
                 <h2 className="text-gray-950 text-xl font-bold mb-4">Upcoming Classes</h2>
                 <div className="relative flex gap-4 h-24">
                   {/* Custom Scrollbar Track */}
-                  <div 
+                  <div
                     className="relative w-1 cursor-pointer"
                     onClick={handleTrackClick}
                   >
                     <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-gray-950 to-gray-50 rounded-xl" />
-                    <div 
+                    <div
                       className="absolute w-2 h-2 -left-[2px] bg-gray-950 rounded-full transition-all duration-150"
                       style={{ top: `${scrollPercentage}%` }}
                     />
                   </div>
-
                   {/* Scrollable Content */}
-                  <div 
+                  <div
                     ref={contentRef}
                     onScroll={handleScroll}
                     className="flex-1 max-h-48 overflow-y-auto scroll-smooth no-scrollbar"
@@ -132,7 +146,7 @@ export default function DashboardPage() {
                   </div>
                 </div>
               </div>
-              </div>
+            </div>
             {/* Attendance Card */}
             <div className="md:col-span-1 space-y-6">
               <div className="bg-[#D9D9D9] rounded-3xl p-6 text-gray-950">
